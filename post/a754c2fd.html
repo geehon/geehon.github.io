@@ -58,16 +58,12 @@
 <link rel="stylesheet" href="/css/main.css?v=6.7.0">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/web.png?v=6.7.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/web.png?v=6.7.0">
 
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
 
 
 
@@ -81,7 +77,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -103,18 +99,18 @@
 
 
 
-  <meta name="description" content="![]( PHP标准建议根据PSR Workflow Bylaw，每个PSR都具有正在处理的状态。一旦提案通过了入口投票，它将在此处列为“草稿”。除非PSR标记为“已接受”，否则可能会发生变化。草稿可能会发生巨大变化，但审核只会有微小的变化。">
-<meta name="keywords" content="PHP,PSR,代码规范">
+  <meta name="description" content="Laravel 5.4 把默认数据库字符集更改成 utf8mb4，作为对存储 emojis 的支持。只要你运行的是 MySQL v5.7.7 及更高版本，那么你就下面提到的错误。  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 byt">
+<meta name="keywords" content="laravel,PHP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP 基本代码标准">
-<meta property="og:url" content="http://yoursite.com/2019/01/13/PHP-基本代码标准/index.html">
+<meta property="og:title" content="Laravel 进行数据迁移（migration）报错解决办法">
+<meta property="og:url" content="http://yoursite.com/post/a754c2fd.html">
 <meta property="og:site_name" content="Geehon">
-<meta property="og:description" content="![]( PHP标准建议根据PSR Workflow Bylaw，每个PSR都具有正在处理的状态。一旦提案通过了入口投票，它将在此处列为“草稿”。除非PSR标记为“已接受”，否则可能会发生变化。草稿可能会发生巨大变化，但审核只会有微小的变化。">
+<meta property="og:description" content="Laravel 5.4 把默认数据库字符集更改成 utf8mb4，作为对存储 emojis 的支持。只要你运行的是 MySQL v5.7.7 及更高版本，那么你就下面提到的错误。  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 byt">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-16T11:01:18.295Z">
+<meta property="og:updated_time" content="2019-01-19T11:17:55.440Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP 基本代码标准">
-<meta name="twitter:description" content="![]( PHP标准建议根据PSR Workflow Bylaw，每个PSR都具有正在处理的状态。一旦提案通过了入口投票，它将在此处列为“草稿”。除非PSR标记为“已接受”，否则可能会发生变化。草稿可能会发生巨大变化，但审核只会有微小的变化。">
+<meta name="twitter:title" content="Laravel 进行数据迁移（migration）报错解决办法">
+<meta name="twitter:description" content="Laravel 5.4 把默认数据库字符集更改成 utf8mb4，作为对存储 emojis 的支持。只要你运行的是 MySQL v5.7.7 及更高版本，那么你就下面提到的错误。  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 byt">
 
 
 
@@ -123,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/13/PHP-基本代码标准/">
+  <link rel="canonical" href="http://yoursite.com/post/a754c2fd.html">
 
 
 
@@ -133,7 +129,7 @@
   };
 </script>
 
-  <title>PHP 基本代码标准 | Geehon</title>
+  <title>Laravel 进行数据迁移（migration）报错解决办法 | Geehon</title>
   
 
 
@@ -236,6 +232,23 @@
         
         
           
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -247,6 +260,23 @@
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
 
@@ -327,7 +357,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/13/PHP-基本代码标准/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/a754c2fd.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Geehon">
@@ -344,7 +374,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PHP 基本代码标准
+          <h1 class="post-title" itemprop="name headline">Laravel 进行数据迁移（migration）报错解决办法
 
               
             
@@ -370,24 +400,12 @@
                 
               
 
-              <time title="创建时间：2019-01-13 18:41:53" itemprop="dateCreated datePublished" datetime="2019-01-13T18:41:53+08:00">2019-01-13</time>
+              <time title="创建时间：2019-01-19 19:13:56 / 修改时间：19:17:55" itemprop="dateCreated datePublished" datetime="2019-01-19T19:13:56+08:00">2019-01-19</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-16 19:01:18" itemprop="dateModified" datetime="2019-01-16T19:01:18+08:00">2019-01-16</time>
               
             
           </span>
@@ -422,8 +440,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
-                <a href="/2019/01/13/PHP-基本代码标准/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/13/PHP-基本代码标准/" itemprop="commentCount"></span>
+                <a href="/post/a754c2fd.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/post/a754c2fd.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -431,7 +449,7 @@
 
           
           
-            <span id="/2019/01/13/PHP-基本代码标准/" class="leancloud_visitors" data-flag-title="PHP 基本代码标准">
+            <span id="/post/a754c2fd.html" class="leancloud_visitors" data-flag-title="Laravel 进行数据迁移（migration）报错解决办法">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -462,49 +480,18 @@
       
 
       
-        <p>![](</p>
-<h1 id="PHP标准建议"><a href="#PHP标准建议" class="headerlink" title="PHP标准建议"></a><a href="https://www.php-fig.org/psr/psr-1/" target="_blank" rel="noopener">PHP标准建议</a></h1><p>根据<a href="https://www.php-fig.org/bylaws/psr-workflow" target="_blank" rel="noopener">PSR Workflow Bylaw</a>，每个PSR都具有正在处理的状态。一旦提案通过了入口投票，它将在此处列为“草稿”。除非PSR标记为“已接受”，否则可能会发生变化。草稿可能会发生巨大变化，但审核只会有微小的变化。</p>
-<a id="more"></a>
-<p>As also described in the <a href="https://www.php-fig.org/bylaws/psr-workflow" target="_blank" rel="noopener">PSR Workflow Bylaw</a>。提案的编辑或编辑们基本上是PSR的主要贡献者和作者，他们得到两位投票成员的支持。这些投票成员是协调员，负责管理审查阶段和投票以及二次发起人。</p>
-<h2 id="PSR-1：基本编码标准"><a href="#PSR-1：基本编码标准" class="headerlink" title="PSR-1：基本编码标准"></a>PSR-1：基本编码标准</h2><p>标准的这一部分包括应该被认为是确保共享PHP代码之间高水平技术互操作性所需的标准编码元素。</p>
-<p>本文档中的关键词“必须”，“必须”，“必需”，“应该”，“不应该”，“应该”，“不应该”，“推荐”，“可以”和“可选”按照RFC 2119中的描述进行解释。</p>
-<h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><ul>
-<li>文件必须只使用<code>&lt;?php</code>和<code>&lt;?=</code>标签。</li>
-<li>对于PHP代码，文件必须仅使用没有BOM的UTF-8。</li>
-<li>文件应该声明符号（类，函数，常量等）或引起副作用（例如生成输出，更改.ini设置等），但不应该同时出现。</li>
-<li>命名空间和类必须遵循“自动加载”PSR：[PSR-0，PSR-4]。</li>
-<li>类名必须使用首字母大写的驼峰式进行声明。</li>
-<li>类常量必须以全部大写形式用下划线分隔符声明。</li>
-<li>方法名必须使用首字母小写的驼峰式进行。</li>
-</ul>
-<h3 id="2-文件"><a href="#2-文件" class="headerlink" title="2. 文件"></a>2. 文件</h3><h4 id="2-1-PHP标签"><a href="#2-1-PHP标签" class="headerlink" title="2.1. PHP标签"></a>2.1. PHP标签</h4><p>PHP代码必须使用长标签<code>&lt;?php?&gt;</code>或短输出标签<code>&lt;?=?&gt;</code>；不能使用其他标签变体。</p>
-<h4 id="2-2-字符编码"><a href="#2-2-字符编码" class="headerlink" title="2.2. 字符编码"></a>2.2. 字符编码</h4><p>PHP代码必须只使用不带BOM的UTF-8编码。</p>
-<h4 id="2-3-副作用"><a href="#2-3-副作用" class="headerlink" title="2.3. 副作用"></a>2.3. 副作用</h4><p>一份 PHP 文件中 <strong>应该</strong> 要不就只定义新的声明，如类、函数或常量等不产生 <code>副作用</code> 的操作，要不就只书写会产生 <code>副作用</code> 的逻辑操作，但 <strong>不该</strong> 同时具有两者。</p>
-<p>「副作用」(side effects) 一词的意思是，仅仅通过包含文件，不直接声明类、函数和常量等，而执行的逻辑操作。</p>
-<p>「副作用」包含却不仅限于：生成输出，明确使用<code>require</code>或<code>include</code>，连接到外部服务，修改ini设置，发出错误或异常，修改全局或静态变量，读取或写入一个文件，等等。</p>
-<p>以下是具有声明和副作用的文件示例;即要避免的一个例子：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// side effect: change ini settings</span></span><br><span class="line">ini_set(<span class="string">'error_reporting'</span>, E_ALL);</span><br><span class="line"></span><br><span class="line"><span class="comment">// side effect: loads a file</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"file.php"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// side effect: generates output</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;html&gt;\n"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// declaration</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// function body</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以下示例是包含没有副作用的声明的文件;即效仿的例子：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// declaration</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// function body</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// conditional declaration is *not* a side effect</span></span><br><span class="line"><span class="keyword">if</span> (! function_exists(<span class="string">'bar'</span>)) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// function body</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-命名空间和类名"><a href="#3-命名空间和类名" class="headerlink" title="3. 命名空间和类名"></a>3. 命名空间和类名</h3><p>命名空间和类名 <strong>必须</strong> 遵循『自动加载』规范：[PSR-0，PSR-4]。</p>
-<p>这意味着每个类都独立为一个文件，并且至少在一个层次的命名空间内，那就是：顶级组织名（vendor name）。</p>
-<p>类名 <strong>必须</strong>大写开头的驼峰命名方式声明。</p>
-<p>PHP 5.3 及更高版本的代码 <strong>必须</strong> 使用正式的命名空间。</p>
-<p>例如</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// PHP 5.3 and later:</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Vendor</span>\<span class="title">Model</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>PHP 5.2 及更低版本 <strong>应该</strong> 使用伪命名空间，约定俗成，以顶级组织名称 <code>Vendor_</code> 为类名前缀：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// PHP 5.2.x and earlier:</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vendor_Model_Foo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="4-类的常量、属性和方法"><a href="#4-类的常量、属性和方法" class="headerlink" title="4. 类的常量、属性和方法"></a>4. 类的常量、属性和方法</h3><p>此处的「类」指代所有的类、接口以及可复用代码块（traits）</p>
-<h4 id="4-1-常量"><a href="#4-1-常量" class="headerlink" title="4.1. 常量"></a>4.1. 常量</h4><p>类的常量中所有字母都 <strong>必须</strong> 大写，词间以下划线分隔。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Vendor</span>\<span class="title">Model</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> VERSION = <span class="string">'1.0'</span>;</span><br><span class="line">    <span class="keyword">const</span> DATE_APPROVED = <span class="string">'2012-06-01'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="4-2-属性"><a href="#4-2-属性" class="headerlink" title="4.2. 属性"></a>4.2. 属性</h4><p>类的属性命名 <strong>可以</strong> 遵循：</p>
-<ul>
-<li>大写开头的驼峰式 </li>
-<li>小写开头的驼峰式</li>
-<li>下划线分隔式 </li>
-</ul>
-<p>本规范不做强制要求，但无论遵循哪种命名方式，都 <strong>应该</strong> 在一定的范围内保持一致。这个范围可以是整个团队、整个包、整个类或整个方法。</p>
-<h4 id="4-3-方法"><a href="#4-3-方法" class="headerlink" title="4.3. 方法"></a>4.3. 方法</h4><p>方法名称 <strong>必须</strong> 用小写开头的驼峰命名规范。</p>
+        <p>Laravel 5.4 把默认数据库字符集更改成 utf8mb4，作为对存储 emojis 的支持。只要你运行的是 MySQL v5.7.7 及更高版本，那么你就下面提到的错误。</p>
+<blockquote>
+<p>SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: alter table users add unique users_email_unique (email))<a id="more"></a></p>
+</blockquote>
+<p>对于 MariaDB 或旧版本的 MySQL 的程序，可以找到：<code>/app/Providers/AppServiceProvider.php</code></p>
+<p>在 <code>boot</code> 方法内设置默认字符串的长度：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Schema</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Schema::defaultStringLength(<span class="number">191</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再次执行:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan migrate</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Migration table created successfully.<br>Migrating: 2014_10_12_000000_create_users_table<br>Migrated:  2014_10_12_000000_create_users_table<br>Migrating: 2014_10_12_100000_create_password_resets_table<br>Migrated:  2014_10_12_100000_create_password_resets_table</p>
+</blockquote>
 
       
     </div>
@@ -528,11 +515,9 @@
       
         <div class="post-tags">
           
+            <a href="/tags/laravel/" rel="tag"><i class="fa fa-tag"></i> laravel</a>
+          
             <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"></i> PHP</a>
-          
-            <a href="/tags/PSR/" rel="tag"><i class="fa fa-tag"></i> PSR</a>
-          
-            <a href="/tags/代码规范/" rel="tag"><i class="fa fa-tag"></i> 代码规范</a>
           
         </div>
       
@@ -545,15 +530,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/post/b05283f6.html" rel="next" title="Facebook账号一键登录">
+                <i class="fa fa-chevron-left"></i> Facebook账号一键登录
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/13/PHP代码风格规范/" rel="prev" title="PHP代码风格规范">
-                PHP代码风格规范 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -602,17 +587,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -639,7 +615,7 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  
+                  <a href="/categories/index.html">
                     
                     
                       
@@ -650,7 +626,7 @@
                     
                     <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
-                  
+                  </a>
                 </div>
               
 
@@ -758,23 +734,6 @@
       </div>
 
       
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP标准建议"><span class="nav-number">1.</span> <span class="nav-text">PHP标准建议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PSR-1：基本编码标准"><span class="nav-number">1.1.</span> <span class="nav-text">PSR-1：基本编码标准</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-概述"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-文件"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-PHP标签"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">2.1. PHP标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-字符编码"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">2.2. 字符编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-副作用"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">2.3. 副作用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-命名空间和类名"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 命名空间和类名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-类的常量、属性和方法"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 类的常量、属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-常量"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">4.1. 常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-属性"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">4.2. 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-方法"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">4.3. 方法</span></a></li></ol></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
       
 
@@ -830,6 +789,8 @@
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
 
@@ -860,6 +821,12 @@
 
 
 
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 
@@ -1361,6 +1328,9 @@
   
 
   
+
+  
+<script type="text/javascript" color="0,0,255" opacity="0.5" zindex="-1" count="60" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
 </body>
 </html>

@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives: 2019 | Hexo</title>
+  <title>Laravel 进行数据迁移（migration）报错解决办法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="Laravel 5.4 把默认数据库字符集更改成 utf8mb4，作为对存储 emojis 的支持。只要你运行的是 MySQL v5.7.7 及更高版本，那么你就下面提到的错误。  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 byt">
+<meta name="keywords" content="laravel,PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel 进行数据迁移（migration）报错解决办法">
+<meta property="og:url" content="http://yoursite.com/2019/01/19/Laravel-进行数据迁移（migration）报错解决办法/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Laravel 5.4 把默认数据库字符集更改成 utf8mb4，作为对存储 emojis 的支持。只要你运行的是 MySQL v5.7.7 及更高版本，那么你就下面提到的错误。  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 byt">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-19T11:17:55.440Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Laravel 进行数据迁移（migration）报错解决办法">
+<meta name="twitter:description" content="Laravel 5.4 把默认数据库字符集更改成 utf8mb4，作为对存储 emojis 的支持。只要你运行的是 MySQL v5.7.7 及更高版本，那么你就下面提到的错误。  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 byt">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,116 +65,69 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/01/19/Laravel-进行数据迁移（migration）报错解决办法/" class="archive-article-date">
-  <time datetime="2019-01-19T11:13:56.000Z" itemprop="datePublished">Jan 19</time>
+        <section id="main"><article id="post-Laravel-进行数据迁移（migration）报错解决办法" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/19/Laravel-进行数据迁移（migration）报错解决办法/" class="article-date">
+  <time datetime="2019-01-19T11:13:56.000Z" itemprop="datePublished">2019-01-19</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/19/Laravel-进行数据迁移（migration）报错解决办法/">Laravel 进行数据迁移（migration）报错解决办法</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel 进行数据迁移（migration）报错解决办法
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/01/16/Facebook账号一键登录/" class="archive-article-date">
-  <time datetime="2019-01-16T11:17:10.000Z" itemprop="datePublished">Jan 16</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/16/Facebook账号一键登录/">Facebook账号一键登录</a>
-    </h1>
-  
+        <p>Laravel 5.4 把默认数据库字符集更改成 utf8mb4，作为对存储 emojis 的支持。只要你运行的是 MySQL v5.7.7 及更高版本，那么你就下面提到的错误。</p>
+<blockquote>
+<p>SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: alter table users add unique users_email_unique (email))<a id="more"></a></p>
+</blockquote>
+<p>对于 MariaDB 或旧版本的 MySQL 的程序，可以找到：<code>/app/Providers/AppServiceProvider.php</code></p>
+<p>在 <code>boot</code> 方法内设置默认字符串的长度：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Schema</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Schema::defaultStringLength(<span class="number">191</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再次执行:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan migrate</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Migration table created successfully.<br>Migrating: 2014_10_12_000000_create_users_table<br>Migrated:  2014_10_12_000000_create_users_table<br>Migrating: 2014_10_12_100000_create_password_resets_table<br>Migrated:  2014_10_12_100000_create_password_resets_table</p>
+</blockquote>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/01/13/PHPStrom文件修改标星提示/" class="archive-article-date">
-  <time datetime="2019-01-13T10:55:08.000Z" itemprop="datePublished">Jan 13</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/13/PHPStrom文件修改标星提示/">PHPStrom文件修改标星提示</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/01/13/PHP代码风格规范/" class="archive-article-date">
-  <time datetime="2019-01-13T10:52:02.000Z" itemprop="datePublished">Jan 13</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/19/Laravel-进行数据迁移（migration）报错解决办法/" data-id="cjr4djbtk0001bgpfg61qnce7" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/13/PHP代码风格规范/">PHP代码风格规范</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/01/13/PHP-基本代码标准/" class="archive-article-date">
-  <time datetime="2019-01-13T10:41:53.000Z" itemprop="datePublished">Jan 13</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/13/PHP-基本代码标准/">PHP 基本代码标准</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/01/16/Facebook账号一键登录/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Facebook账号一键登录</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         

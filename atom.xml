@@ -36,9 +36,9 @@
       <category term="PHP" scheme="http://yoursite.com/categories/PHP/"/>
     
     
-      <category term="laravel" scheme="http://yoursite.com/tags/laravel/"/>
-    
       <category term="PHP" scheme="http://yoursite.com/tags/PHP/"/>
+    
+      <category term="laravel" scheme="http://yoursite.com/tags/laravel/"/>
     
   </entry>
   

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://geehon.github.io/"/>
-  <updated>2019-01-19T11:17:55.440Z</updated>
+  <updated>2019-01-21T10:38:58.324Z</updated>
   <id>https://geehon.github.io/</id>
   
   <author>
@@ -15,6 +15,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP开发安全问题总结</title>
+    <link href="https://geehon.github.io/post/fafef4eb.html"/>
+    <id>https://geehon.github.io/post/fafef4eb.html</id>
+    <published>2019-01-21T10:37:55.000Z</published>
+    <updated>2019-01-21T10:38:58.324Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://www.codeproject.com/KB/PHP/363897/php_security.jpg" alt=""></p><h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>提供Internet服务时，在开发代码时必须始终牢记安全性。大多数PHP脚本对安全问题都不敏感；特别是对大多数没有经验的开发者来说。但是，基于对代码重要性，非常有必要采用一致的安全策略。当你在服务器上放置任何财产有关的东西时，很可能会有人试图随便破解它。创建一个论坛程序或任何类型的购物车，被攻击的可能性就会有所上升。</p><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>以下是保护您的网络内容的一些一般安全准则：</p><h2 id="不要相信表单"><a href="#不要相信表单" class="headerlink" title="不要相信表单"></a>不要相信表单</h2><p>利用表单攻击是很寻常的。通过使用简单的JavaScript技巧，您可以限制您的表单以仅允许的字段。对于一般的Javascript前台验证，由于无法得知用户的行为，例如用户关闭了浏览器的Javascript引擎或发布自定义表单数据时，客户端验证会弹出窗口。</p><p>用户主要通过表单参数与脚本进行交互，因此它们也成了最大的安全风险。这告诉我们什么？要始终验证传递给PHP脚本的任何数据。在本文中，我们将向您展示如何分析和防止跨站点脚本（XSS）攻击，严重的话会劫持你的用户凭据。您还将了解如何防止可能污染或破坏数据的MySQL注入攻击。</p><h2 id="不要相信用户"><a href="#不要相信用户" class="headerlink" title="不要相信用户"></a>不要相信用户</h2><p>要始终假设您的网站收集的每一条数据都充满了有害的代码。对每条数据都要进行过滤，即使你肯定没有人试图攻击你的应用。</p><h2 id="关闭全局变量"><a href="#关闭全局变量" class="headerlink" title="关闭全局变量"></a>关闭全局变量</h2><p>最大安全漏洞是启用了<code>register_globals</code>配置参数。不过幸运的是，它在PHP 4.2及更高版本中默认关闭。如果<code>register_globals</code>打开，那么你可以通过在服务器的php.ini文件中将<code>register_globals</code>变量设置为Off来禁用此功能。</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">register_globals</span> = <span class="literal">Off</span></span><br></pre></td></tr></table></figure><p>新手程序员查看注册的全局变量是一种便利，但他们没有意识到这个设置有多危险。启用了全局变量的服务器会自动将全局变量分配给任何表单参数。为了了解这是如何工作的以及为什么这是危险的，让我们看一个例子。</p><p>假设您有一个名为<code>process.php</code>的脚本，它将表单数据输入到您的用户数据库中。原始表单看起来像这样：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">size</span>=<span class="string">"15"</span> <span class="attr">maxlength</span>=<span class="string">"64"</span>&gt;</span></span><br></pre></td></tr></table></figure><p>运行<code>process.php</code>时，启用了已注册全局变量的PHP会将此参数的值放入<code>$ username</code>变量中。通过<code>$ _POST [&#39;username&#39;]</code>或<code>$ _GET [&#39;username&#39;]</code>可以节省一些打字输入。但不幸的是，这也造成了一个安全问题。因为PHP为通过GET或POST参数发送到脚本的任何值设置了一个变量，如果你没有显式初始化变量并且你不希望有人操纵它，这是一个大问题。</p><p>以下面的脚本为例 - 如果<code>$ authorized</code>变量为<code>true</code>，它会向用户显示机密数据。在正常情况下，仅当用户已通过假设的<code>authenticated_user()</code>函数进行了正确的身份验证时，<code>$ authorized</code>变量才会设置为<code>true</code>。但是如果你有<code>register_globals</code>活动，任何人都可以发送一个GET参数，如<code>authorized = 1</code>来覆盖这个：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// Define $authorized = true only if user is authenticated</span></span><br><span class="line"><span class="keyword">if</span> (authenticated_user()) &#123;</span><br><span class="line">    $authorized = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p>这个场景寓意是你应该从预定义的服务器变量中提取表单数据。通过发布的表单传递到您的网页的所有数据都会自动存储在名为<code>$ _POST</code>的大型数组中，并且所有GET数据都存储在名为<code>$ _GET</code>的大型数组中。文件上载信息存储在名为<code>$ _FILES的</code>特殊数组中。此外，还有一个名为<code>$ _REQUEST</code>的组合变量。</p><p>要从POST方法表单访问用户名字段，请使用<code>$ _POST [&#39;username&#39;]</code>。如果用户名在URL中，请使用<code>$ _GET [&#39;username&#39;]</code>。如果您不关心值的来源，请使用<code>$ _REQUEST [&#39;username&#39;]</code>。</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$post_value = $_POST[<span class="string">'post_value'</span>];</span><br><span class="line">$get_value = $_GET[<span class="string">'get_value'</span>];</span><br><span class="line">$some_variable = $_REQUEST[<span class="string">'some_value'</span>]; </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p><code>$ _REQUEST</code>是<code>$ _GET</code>，<code>$ _POST</code>和<code>$ _COOKIE</code>数组的联合。如果您有两个或多个相同参数名称的值，请注意PHP使用的值。默认顺序是<code>cookie</code>，<code>POST</code>，然后是<code>GET</code>。</p><h2 id="推荐的安全配置选项"><a href="#推荐的安全配置选项" class="headerlink" title="推荐的安全配置选项"></a>推荐的安全配置选项</h2><h1 id="SQL注入攻击"><a href="#SQL注入攻击" class="headerlink" title="SQL注入攻击"></a>SQL注入攻击</h1><h1 id="防止基本的XSS攻击"><a href="#防止基本的XSS攻击" class="headerlink" title="防止基本的XSS攻击"></a>防止基本的XSS攻击</h1><h1 id="使用SafeHTML"><a href="#使用SafeHTML" class="headerlink" title="使用SafeHTML"></a>使用SafeHTML</h1><h1 id="使用单向哈希保护数据"><a href="#使用单向哈希保护数据" class="headerlink" title="使用单向哈希保护数据"></a>使用单向哈希保护数据</h1><h1 id="使用Mcrypt加密数据"><a href="#使用Mcrypt加密数据" class="headerlink" title="使用Mcrypt加密数据"></a>使用Mcrypt加密数据</h1><h1 id="生成随机密码"><a href="#生成随机密码" class="headerlink" title="生成随机密码"></a>生成随机密码</h1><p><a href="https://www.codeproject.com/Articles/363897/PHP-Security" target="_blank" rel="noopener">查看原文</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://www.codeproject.com/KB/PHP/363897/php_security.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;
+      
+    
+    </summary>
+    
+      <category term="PHP" scheme="https://geehon.github.io/categories/PHP/"/>
+    
+    
+      <category term="PHP" scheme="https://geehon.github.io/tags/PHP/"/>
+    
+      <category term="安全" scheme="https://geehon.github.io/tags/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Gitee(码云)、Github同时配置ssh key</title>
+    <link href="https://geehon.github.io/post/c70e21e5.html"/>
+    <id>https://geehon.github.io/post/c70e21e5.html</id>
+    <published>2019-01-21T10:35:57.000Z</published>
+    <updated>2019-01-21T10:37:21.673Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、创建gitee和github的ssh-key"><a href="#一、创建gitee和github的ssh-key" class="headerlink" title="一、创建gitee和github的ssh key"></a>一、创建gitee和github的ssh key</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ssh-keygen -t rsa -C "xxxxx@xxxxx.com"</span><br></pre></td></tr></table></figure><p> 替换正确的邮箱，按enter</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/c/Users/FlyingHorse/.ssh/id_rsa): id_rsa.gitee</span><br></pre></td></tr></table></figure><p>创建gitee的ssh key时输入id_rsa.gitee，创建github的ssh key时输入id_rsa.github</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br><span class="line">Your identification has been saved in id_rsa.gitee.</span><br><span class="line">Your public key has been saved in id_rsa.gitee.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:lmjU8A4k+r6liYJmENBPM/7Frx3XDg98VeWvIQ9dLyw xxxxx@xxxxx.com</span><br><span class="line">The key's randomart image is:</span><br><span class="line">+---[RSA 2048]----+</span><br><span class="line">| .  . o         o|</span><br><span class="line">|. ..+o +       ..|</span><br><span class="line">|. .+ oo.o       +|</span><br><span class="line">|.  .o. +o.   o .+|</span><br><span class="line">| .  ..o.S. .E.=.o|</span><br><span class="line">|.  . ...  o ==o+ |</span><br><span class="line">|o   . .  o o *o  |</span><br><span class="line">|oo . =  . .   o  |</span><br><span class="line">|o.. +            |</span><br><span class="line">+----[SHA256]-----+</span><br></pre></td></tr></table></figure><p>一路按enter，知道输出如图</p><h2 id="二、把public-key复制到gitee或github"><a href="#二、把public-key复制到gitee或github" class="headerlink" title="二、把public key复制到gitee或github"></a>二、把public key复制到gitee或github</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.gitee.pub</span><br><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZbvgUEj3XAXH4HkW27ibdXgV6VHdrA9/WdSDHtiiC55mjPvxj3OtPxIbpeJmhWyHiJWR6</span><br><span class="line">uUuK+gkb//O51uWCPhHqxKR7+45tZ9jHqXW+hEKPp+odQgc+3hiHAjTkn3JGeIJlQp2UdJCDHBrp+kcgVeg91+y7cU3ufaUQ/hpD</span><br><span class="line">rCgn6uvwjwJgnDhV9DYi+gFUFe7LUwa1o4nfwg43ycuOOuT7c6VO2dj/0pLRUVTPQYu/C3kaaPVedir7mKIu/dM6Ec44bhYTp1Dq</span><br><span class="line">qp8BO42Cfo+n+dempqYTe2wcPvuDjSj884IATc/KvBfc86Yd2Uj7NI7li90Y3i6adoxUIWQh xxxxx@xxxxx.com</span><br></pre></td></tr></table></figure><p>查看公钥，gitee输入id_rsa.gitee.pub，github输入id_rsa.github.pub</p><p>将第二行到结尾的内容复制到gitee或github的ssh中保存</p><h2 id="三、创建配置解决ssh冲突"><a href="#三、创建配置解决ssh冲突" class="headerlink" title="三、创建配置解决ssh冲突"></a>三、创建配置解决ssh冲突</h2><p>在.ssh文件夹中创建config文件，添加以下内容以区分两个ssh key</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># gitee</span><br><span class="line">Host gitee.com</span><br><span class="line">HostName gitee.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa.gitee</span><br><span class="line"></span><br><span class="line"># github</span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa.github</span><br></pre></td></tr></table></figure><h2 id="四、测试连接"><a href="#四、测试连接" class="headerlink" title="四、测试连接"></a>四、测试连接</h2><p>输入</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@gitee.com</span><br></pre></td></tr></table></figure><p>若返回如下图，则gitee则连接正常</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Welcome to Gitee.com, yourname!</span><br></pre></td></tr></table></figure><p> 输入</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure><p>若返回如下图，则github则连接正常</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi yourname! You've successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一、创建gitee和github的ssh-key&quot;&gt;&lt;a href=&quot;#一、创建gitee和github的ssh-key&quot; class=&quot;headerlink&quot; title=&quot;一、创建gitee和github的ssh key&quot;&gt;&lt;/a&gt;一、创建gitee和gith
+      
+    
+    </summary>
+    
+      <category term="git" scheme="https://geehon.github.io/categories/git/"/>
+    
+    
+      <category term="git" scheme="https://geehon.github.io/tags/git/"/>
+    
+      <category term="技巧" scheme="https://geehon.github.io/tags/%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用PHPStrom安装laravel</title>
+    <link href="https://geehon.github.io/post/793c95ad.html"/>
+    <id>https://geehon.github.io/post/793c95ad.html</id>
+    <published>2019-01-21T10:33:18.000Z</published>
+    <updated>2019-01-21T10:35:21.629Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://gitee.com/GHong/blog/raw/master/picture/phpstrom-cover.png" alt=""></p><h1 id="项目安装设置"><a href="#项目安装设置" class="headerlink" title="项目安装设置"></a>项目安装设置</h1><p>打开软件选择<code>create new porject</code>,进入创建项目窗口，选择<code>Composer Project</code>。按照截图所示设置相应的Location（安装目录）、勾选<code>Download composer.phar from getcomposer.org</code>、Package输入<code>laravel/laravel</code>并在查找的结果中选择<code>laravel/laravel</code>。最后点击Create开始创建。整个安装过程的时间由于网络的环境不同有所差异。</p><p><img src="https://gitee.com/GHong/blog/raw/master/picture/laravel%20initial.png" alt=""></p><p>安装完成后可以在phpstrom的Event Log查看的相应的消息。</p><blockquote><p>Composer<br>​    Project was successfully created by Composer.<br>​    Show in log</p></blockquote><p>点击<code>Show in log</code>就可以查看具体的安装日志。</p><p><img src="https://gitee.com/GHong/blog/raw/master/picture/laravel%20log.png" alt=""></p><p>至此这个项目就相当安装好了。</p><h2 id="开发前的设置"><a href="#开发前的设置" class="headerlink" title="开发前的设置"></a>开发前的设置</h2><h3 id="设置版本控制"><a href="#设置版本控制" class="headerlink" title="设置版本控制"></a>设置版本控制</h3><p>打开project工作区全选这个项目下的文件，然后取消选择composer.phar。</p><p><img src="https://gitee.com/GHong/blog/raw/master/picture/laravel%20git.png" alt=""></p><p>然后在顶部的菜单栏里选择<code>VCS</code>-&gt;<code>Enable Version Control Integration</code></p><p><img src="https://gitee.com/GHong/blog/raw/master/picture/laravel%20git1.png" alt=""></p><p>这时候会弹出版本控制工具的对话框。我这边是设置为Git。</p><p><img src="https://gitee.com/GHong/blog/raw/master/picture/laravel%20git2.png" alt=""></p><p>点击<code>OK</code>确定。选择Version Control会弹出如下界面，点击绿色小箭头。</p><p><img src="https://gitee.com/GHong/blog/raw/master/picture/laravel%20git4.png" alt=""></p><p>此时就会弹出git的提交信息界面，按照截图所示进行操作：</p><p>选择要git提交的文件，因为是第一次提交可以把<code>Before Commit</code>下的<code>Optimize import</code>和<code>Perform code analysis</code>取消掉。最后填写Commit Message点击Commit确认提交。至此git的初始设置就相当于完成了。</p><p><img src="https://gitee.com/GHong/blog/raw/master/picture/laravel%20git3.png" alt=""></p><h3 id="安装laravel支持插件"><a href="#安装laravel支持插件" class="headerlink" title="安装laravel支持插件"></a>安装laravel支持插件</h3><p>实现代码自动补全和检查可以安装<code>Laravel Plugin</code>这个插件。点击<code>File</code>-&gt;<code>Plugin</code>在Marketplace里搜索<code>Laravel Plugin</code>选择安装并重启IDE。重启后再打开设置界面。找到<code>Languages &amp; Frameworks</code>-&gt;<code>PHP</code>-&gt;<code>Laravel</code>勾选<code>Enable plugin for this project</code>。点击Aplay确认应用。</p><p><img src="https://gitee.com/GHong/blog/raw/master/picture/laravel%20plugin.png" alt=""></p><h3 id="安装Laravel-Debugbar-扩展包"><a href="#安装Laravel-Debugbar-扩展包" class="headerlink" title="安装Laravel Debugbar 扩展包"></a>安装Laravel Debugbar 扩展包</h3><p>在菜单栏依次选择<code>Tools</code>-&gt;<code>composer</code>-&gt;<code>Manage dependencies</code>。在弹出的窗口里输入<code>barryvdh/laravel-debugbar</code>。选择要安装的版本Version to install，我这边选择最新的稳定版<code>V3.2.1</code></p><p><img src="https://gitee.com/GHong/blog/raw/master/picture/laravel%20debug.png" alt=""></p><p>再次打开部署的网站页面，就可以看到优雅的debug bar了。</p><p><img src="https://gitee.com/GHong/blog/raw/master/picture/lararvel%20debug.png" alt=""></p><p>安装其他的扩展包也可以按照这个方法进行安装。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://gitee.com/GHong/blog/raw/master/picture/phpstrom-cover.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;项目安装设置&quot;&gt;&lt;a href=&quot;#项目安装设置&quot; class=&quot;header
+      
+    
+    </summary>
+    
+      <category term="PHP" scheme="https://geehon.github.io/categories/PHP/"/>
+    
+    
+      <category term="laravel" scheme="https://geehon.github.io/tags/laravel/"/>
+    
+      <category term="PHP" scheme="https://geehon.github.io/tags/PHP/"/>
+    
+      <category term="PHPstrom" scheme="https://geehon.github.io/tags/PHPstrom/"/>
+    
+  </entry>
   
   <entry>
     <title>Laravel 进行数据迁移（migration）报错解决办法</title>

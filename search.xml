@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PHP开发安全问题总结]]></title>
+    <url>%2Fpost%2Ffafef4eb.html</url>
+    <content type="text"><![CDATA[引言提供Internet服务时，在开发代码时必须始终牢记安全性。大多数PHP脚本对安全问题都不敏感；特别是对大多数没有经验的开发者来说。但是，基于对代码重要性，非常有必要采用一致的安全策略。当你在服务器上放置任何财产有关的东西时，很可能会有人试图随便破解它。创建一个论坛程序或任何类型的购物车，被攻击的可能性就会有所上升。 背景以下是保护您的网络内容的一些一般安全准则： 不要相信表单利用表单攻击是很寻常的。通过使用简单的JavaScript技巧，您可以限制您的表单以仅允许的字段。对于一般的Javascript前台验证，由于无法得知用户的行为，例如用户关闭了浏览器的Javascript引擎或发布自定义表单数据时，客户端验证会弹出窗口。 用户主要通过表单参数与脚本进行交互，因此它们也成了最大的安全风险。这告诉我们什么？要始终验证传递给PHP脚本的任何数据。在本文中，我们将向您展示如何分析和防止跨站点脚本（XSS）攻击，严重的话会劫持你的用户凭据。您还将了解如何防止可能污染或破坏数据的MySQL注入攻击。 不要相信用户要始终假设您的网站收集的每一条数据都充满了有害的代码。对每条数据都要进行过滤，即使你肯定没有人试图攻击你的应用。 关闭全局变量最大安全漏洞是启用了register_globals配置参数。不过幸运的是，它在PHP 4.2及更高版本中默认关闭。如果register_globals打开，那么你可以通过在服务器的php.ini文件中将register_globals变量设置为Off来禁用此功能。 1register_globals = Off 新手程序员查看注册的全局变量是一种便利，但他们没有意识到这个设置有多危险。启用了全局变量的服务器会自动将全局变量分配给任何表单参数。为了了解这是如何工作的以及为什么这是危险的，让我们看一个例子。 假设您有一个名为process.php的脚本，它将表单数据输入到您的用户数据库中。原始表单看起来像这样： 1&lt;input name="username" type="text" size="15" maxlength="64"&gt; 运行process.php时，启用了已注册全局变量的PHP会将此参数的值放入$ username变量中。通过$ _POST [&#39;username&#39;]或$ _GET [&#39;username&#39;]可以节省一些打字输入。但不幸的是，这也造成了一个安全问题。因为PHP为通过GET或POST参数发送到脚本的任何值设置了一个变量，如果你没有显式初始化变量并且你不希望有人操纵它，这是一个大问题。 以下面的脚本为例 - 如果$ authorized变量为true，它会向用户显示机密数据。在正常情况下，仅当用户已通过假设的authenticated_user()函数进行了正确的身份验证时，$ authorized变量才会设置为true。但是如果你有register_globals活动，任何人都可以发送一个GET参数，如authorized = 1来覆盖这个： 123456&lt;?php// Define $authorized = true only if user is authenticatedif (authenticated_user()) &#123; $authorized = true;&#125;?&gt; 这个场景寓意是你应该从预定义的服务器变量中提取表单数据。通过发布的表单传递到您的网页的所有数据都会自动存储在名为$ _POST的大型数组中，并且所有GET数据都存储在名为$ _GET的大型数组中。文件上载信息存储在名为$ _FILES的特殊数组中。此外，还有一个名为$ _REQUEST的组合变量。 要从POST方法表单访问用户名字段，请使用$ _POST [&#39;username&#39;]。如果用户名在URL中，请使用$ _GET [&#39;username&#39;]。如果您不关心值的来源，请使用$ _REQUEST [&#39;username&#39;]。 12345&lt;?php$post_value = $_POST['post_value'];$get_value = $_GET['get_value'];$some_variable = $_REQUEST['some_value']; ?&gt; $ _REQUEST是$ _GET，$ _POST和$ _COOKIE数组的联合。如果您有两个或多个相同参数名称的值，请注意PHP使用的值。默认顺序是cookie，POST，然后是GET。 推荐的安全配置选项SQL注入攻击防止基本的XSS攻击使用SafeHTML使用单向哈希保护数据使用Mcrypt加密数据生成随机密码查看原文]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Gitee(码云)、Github同时配置ssh key]]></title>
+    <url>%2Fpost%2Fc70e21e5.html</url>
+    <content type="text"><![CDATA[一、创建gitee和github的ssh key12cd ~/.sshssh-keygen -t rsa -C "xxxxx@xxxxx.com" 替换正确的邮箱，按enter 12Generating public/private rsa key pair.Enter file in which to save the key (/c/Users/FlyingHorse/.ssh/id_rsa): id_rsa.gitee 创建gitee的ssh key时输入id_rsa.gitee，创建github的ssh key时输入id_rsa.github 123456789101112131415161718Enter passphrase (empty for no passphrase):Enter same passphrase again:Your identification has been saved in id_rsa.gitee.Your public key has been saved in id_rsa.gitee.pub.The key fingerprint is:SHA256:lmjU8A4k+r6liYJmENBPM/7Frx3XDg98VeWvIQ9dLyw xxxxx@xxxxx.comThe key's randomart image is:+---[RSA 2048]----+| . . o o||. ..+o + ..||. .+ oo.o +||. .o. +o. o .+|| . ..o.S. .E.=.o||. . ... o ==o+ ||o . . o o *o ||oo . = . . o ||o.. + |+----[SHA256]-----+ 一路按enter，知道输出如图 二、把public key复制到gitee或github12345cat id_rsa.gitee.pubssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZbvgUEj3XAXH4HkW27ibdXgV6VHdrA9/WdSDHtiiC55mjPvxj3OtPxIbpeJmhWyHiJWR6uUuK+gkb//O51uWCPhHqxKR7+45tZ9jHqXW+hEKPp+odQgc+3hiHAjTkn3JGeIJlQp2UdJCDHBrp+kcgVeg91+y7cU3ufaUQ/hpDrCgn6uvwjwJgnDhV9DYi+gFUFe7LUwa1o4nfwg43ycuOOuT7c6VO2dj/0pLRUVTPQYu/C3kaaPVedir7mKIu/dM6Ec44bhYTp1Dqqp8BO42Cfo+n+dempqYTe2wcPvuDjSj884IATc/KvBfc86Yd2Uj7NI7li90Y3i6adoxUIWQh xxxxx@xxxxx.com 查看公钥，gitee输入id_rsa.gitee.pub，github输入id_rsa.github.pub 将第二行到结尾的内容复制到gitee或github的ssh中保存 三、创建配置解决ssh冲突在.ssh文件夹中创建config文件，添加以下内容以区分两个ssh key 1234567891011# giteeHost gitee.comHostName gitee.comPreferredAuthentications publickeyIdentityFile ~/.ssh/id_rsa.gitee# githubHost github.comHostName github.comPreferredAuthentications publickeyIdentityFile ~/.ssh/id_rsa.github 四、测试连接输入 1ssh -T git@gitee.com 若返回如下图，则gitee则连接正常 1Welcome to Gitee.com, yourname! 输入 1ssh -T git@github.com 若返回如下图，则github则连接正常 1Hi yourname! You've successfully authenticated, but GitHub does not provide shell access.]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用PHPStrom安装laravel]]></title>
+    <url>%2Fpost%2F793c95ad.html</url>
+    <content type="text"><![CDATA[项目安装设置打开软件选择create new porject,进入创建项目窗口，选择Composer Project。按照截图所示设置相应的Location（安装目录）、勾选Download composer.phar from getcomposer.org、Package输入laravel/laravel并在查找的结果中选择laravel/laravel。最后点击Create开始创建。整个安装过程的时间由于网络的环境不同有所差异。 安装完成后可以在phpstrom的Event Log查看的相应的消息。 Composer​ Project was successfully created by Composer.​ Show in log 点击Show in log就可以查看具体的安装日志。 至此这个项目就相当安装好了。 开发前的设置设置版本控制打开project工作区全选这个项目下的文件，然后取消选择composer.phar。 然后在顶部的菜单栏里选择VCS-&gt;Enable Version Control Integration 这时候会弹出版本控制工具的对话框。我这边是设置为Git。 点击OK确定。选择Version Control会弹出如下界面，点击绿色小箭头。 此时就会弹出git的提交信息界面，按照截图所示进行操作： 选择要git提交的文件，因为是第一次提交可以把Before Commit下的Optimize import和Perform code analysis取消掉。最后填写Commit Message点击Commit确认提交。至此git的初始设置就相当于完成了。 安装laravel支持插件实现代码自动补全和检查可以安装Laravel Plugin这个插件。点击File-&gt;Plugin在Marketplace里搜索Laravel Plugin选择安装并重启IDE。重启后再打开设置界面。找到Languages &amp; Frameworks-&gt;PHP-&gt;Laravel勾选Enable plugin for this project。点击Aplay确认应用。 安装Laravel Debugbar 扩展包在菜单栏依次选择Tools-&gt;composer-&gt;Manage dependencies。在弹出的窗口里输入barryvdh/laravel-debugbar。选择要安装的版本Version to install，我这边选择最新的稳定版V3.2.1 再次打开部署的网站页面，就可以看到优雅的debug bar了。 安装其他的扩展包也可以按照这个方法进行安装。]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>laravel</tag>
+        <tag>PHP</tag>
+        <tag>PHPstrom</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Laravel 进行数据迁移（migration）报错解决办法]]></title>
     <url>%2Fpost%2Fa754c2fd.html</url>
     <content type="text"><![CDATA[Laravel 5.4 把默认数据库字符集更改成 utf8mb4，作为对存储 emojis 的支持。只要你运行的是 MySQL v5.7.7 及更高版本，那么你就下面提到的错误。 SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: alter table users add unique users_email_unique (email)) 对于 MariaDB 或旧版本的 MySQL 的程序，可以找到：/app/Providers/AppServiceProvider.php 在 boot 方法内设置默认字符串的长度： 123456use Illuminate\Support\Facades\Schema;public function boot()&#123; Schema::defaultStringLength(191);&#125; 再次执行: 1php artisan migrate Migration table created successfully.Migrating: 2014_10_12_000000_create_users_tableMigrated: 2014_10_12_000000_create_users_tableMigrating: 2014_10_12_100000_create_password_resets_tableMigrated: 2014_10_12_100000_create_password_resets_table]]></content>

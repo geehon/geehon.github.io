@@ -99,17 +99,20 @@
 
 
 
-  <meta name="description" content="学而后知不足">
-<meta name="keywords" content="Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Geehon">
-<meta property="og:url" content="https://geehon.github.io/categories/PHP/index.html">
+  <meta name="description" content="引言提供Internet服务时，在开发代码时必须始终牢记安全性。大多数PHP脚本对安全问题都不敏感；特别是对大多数没有经验的开发者来说。但是，基于对代码重要性，非常有必要采用一致的安全策略。当你在服务器上放置任何财产有关的东西时，很可能会有人试图随便破解它。创建一个论坛程序或任何类型的购物车，被攻击的可能性就会有所上升。 背景以下是保护您的网络内容的一些一般安全准则： 不要相信表单利用表单攻击是">
+<meta name="keywords" content="PHP,安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP开发安全问题总结">
+<meta property="og:url" content="https://geehon.github.io/post/fafef4eb.html">
 <meta property="og:site_name" content="Geehon">
-<meta property="og:description" content="学而后知不足">
+<meta property="og:description" content="引言提供Internet服务时，在开发代码时必须始终牢记安全性。大多数PHP脚本对安全问题都不敏感；特别是对大多数没有经验的开发者来说。但是，基于对代码重要性，非常有必要采用一致的安全策略。当你在服务器上放置任何财产有关的东西时，很可能会有人试图随便破解它。创建一个论坛程序或任何类型的购物车，被攻击的可能性就会有所上升。 背景以下是保护您的网络内容的一些一般安全准则： 不要相信表单利用表单攻击是">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.codeproject.com/KB/PHP/363897/php_security.jpg">
+<meta property="og:updated_time" content="2019-01-21T10:38:58.324Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Geehon">
-<meta name="twitter:description" content="学而后知不足">
+<meta name="twitter:title" content="PHP开发安全问题总结">
+<meta name="twitter:description" content="引言提供Internet服务时，在开发代码时必须始终牢记安全性。大多数PHP脚本对安全问题都不敏感；特别是对大多数没有经验的开发者来说。但是，基于对代码重要性，非常有必要采用一致的安全策略。当你在服务器上放置任何财产有关的东西时，很可能会有人试图随便破解它。创建一个论坛程序或任何类型的购物车，被攻击的可能性就会有所上升。 背景以下是保护您的网络内容的一些一般安全准则： 不要相信表单利用表单攻击是">
+<meta name="twitter:image" content="https://www.codeproject.com/KB/PHP/363897/php_security.jpg">
 
 
 
@@ -118,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="https://geehon.github.io/categories/PHP/">
+  <link rel="canonical" href="https://geehon.github.io/post/fafef4eb.html">
 
 
 
@@ -128,7 +131,7 @@
   };
 </script>
 
-  <title>分类: PHP | Geehon</title>
+  <title>PHP开发安全问题总结 | Geehon</title>
   
 
 
@@ -176,7 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -231,7 +234,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -336,184 +339,291 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>PHP<small>分类</small>
-        </h2>
-      </div>
-
-      
-        
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://geehon.github.io/post/fafef4eb.html">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Geehon">
+      <meta itemprop="description" content="学而后知不足">
+      <meta itemprop="image" content="/images/avatar1.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geehon">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/post/fafef4eb.html" itemprop="url">
-            
-              <span itemprop="name">PHP开发安全问题总结</span>
-            
-          </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">PHP开发安全问题总结
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-21T18:37:55+08:00" content="2019-01-21">
-          01-21
-        </time>
-      </div>
+              
+            
+          </h2>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-21 18:37:55 / 修改时间：18:38:58" itemprop="dateCreated datePublished" datetime="2019-01-21T18:37:55+08:00">2019-01-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/post/fafef4eb.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/post/fafef4eb.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/793c95ad.html" itemprop="url">
-            
-              <span itemprop="name">使用PHPStrom安装laravel</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-21T18:33:18+08:00" content="2019-01-21">
-          01-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/a754c2fd.html" itemprop="url">
-            
-              <span itemprop="name">Laravel 进行数据迁移（migration）报错解决办法</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-19T19:13:56+08:00" content="2019-01-19">
-          01-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/e54bdc58.html" itemprop="url">
-            
-              <span itemprop="name">PHP代码风格规范</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-13T18:52:02+08:00" content="2019-01-13">
-          01-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/post/ae1a60a8.html" itemprop="url">
-            
-              <span itemprop="name">PHP 基本代码标准</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-13T18:41:53+08:00" content="2019-01-13">
-          01-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p><img src="https://www.codeproject.com/KB/PHP/363897/php_security.jpg" alt=""></p>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>提供Internet服务时，在开发代码时必须始终牢记安全性。大多数PHP脚本对安全问题都不敏感；特别是对大多数没有经验的开发者来说。但是，基于对代码重要性，非常有必要采用一致的安全策略。当你在服务器上放置任何财产有关的东西时，很可能会有人试图随便破解它。创建一个论坛程序或任何类型的购物车，被攻击的可能性就会有所上升。</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>以下是保护您的网络内容的一些一般安全准则：</p>
+<h2 id="不要相信表单"><a href="#不要相信表单" class="headerlink" title="不要相信表单"></a>不要相信表单</h2><p>利用表单攻击是很寻常的。通过使用简单的JavaScript技巧，您可以限制您的表单以仅允许的字段。对于一般的Javascript前台验证，由于无法得知用户的行为，例如用户关闭了浏览器的Javascript引擎或发布自定义表单数据时，客户端验证会弹出窗口。</p>
+<p>用户主要通过表单参数与脚本进行交互，因此它们也成了最大的安全风险。这告诉我们什么？要始终验证传递给PHP脚本的任何数据。在本文中，我们将向您展示如何分析和防止跨站点脚本（XSS）攻击，严重的话会劫持你的用户凭据。您还将了解如何防止可能污染或破坏数据的MySQL注入攻击。</p>
+<h2 id="不要相信用户"><a href="#不要相信用户" class="headerlink" title="不要相信用户"></a>不要相信用户</h2><p>要始终假设您的网站收集的每一条数据都充满了有害的代码。对每条数据都要进行过滤，即使你肯定没有人试图攻击你的应用。</p>
+<h2 id="关闭全局变量"><a href="#关闭全局变量" class="headerlink" title="关闭全局变量"></a>关闭全局变量</h2><p>最大安全漏洞是启用了<code>register_globals</code>配置参数。不过幸运的是，它在PHP 4.2及更高版本中默认关闭。如果<code>register_globals</code>打开，那么你可以通过在服务器的php.ini文件中将<code>register_globals</code>变量设置为Off来禁用此功能。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">register_globals</span> = <span class="literal">Off</span></span><br></pre></td></tr></table></figure>
+<p>新手程序员查看注册的全局变量是一种便利，但他们没有意识到这个设置有多危险。启用了全局变量的服务器会自动将全局变量分配给任何表单参数。为了了解这是如何工作的以及为什么这是危险的，让我们看一个例子。</p>
+<p>假设您有一个名为<code>process.php</code>的脚本，它将表单数据输入到您的用户数据库中。原始表单看起来像这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">size</span>=<span class="string">"15"</span> <span class="attr">maxlength</span>=<span class="string">"64"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行<code>process.php</code>时，启用了已注册全局变量的PHP会将此参数的值放入<code>$ username</code>变量中。通过<code>$ _POST [&#39;username&#39;]</code>或<code>$ _GET [&#39;username&#39;]</code>可以节省一些打字输入。但不幸的是，这也造成了一个安全问题。因为PHP为通过GET或POST参数发送到脚本的任何值设置了一个变量，如果你没有显式初始化变量并且你不希望有人操纵它，这是一个大问题。</p>
+<p>以下面的脚本为例 - 如果<code>$ authorized</code>变量为<code>true</code>，它会向用户显示机密数据。在正常情况下，仅当用户已通过假设的<code>authenticated_user()</code>函数进行了正确的身份验证时，<code>$ authorized</code>变量才会设置为<code>true</code>。但是如果你有<code>register_globals</code>活动，任何人都可以发送一个GET参数，如<code>authorized = 1</code>来覆盖这个：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// Define $authorized = true only if user is authenticated</span></span><br><span class="line"><span class="keyword">if</span> (authenticated_user()) &#123;</span><br><span class="line">    $authorized = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个场景寓意是你应该从预定义的服务器变量中提取表单数据。通过发布的表单传递到您的网页的所有数据都会自动存储在名为<code>$ _POST</code>的大型数组中，并且所有GET数据都存储在名为<code>$ _GET</code>的大型数组中。文件上载信息存储在名为<code>$ _FILES的</code>特殊数组中。此外，还有一个名为<code>$ _REQUEST</code>的组合变量。</p>
+<p>要从POST方法表单访问用户名字段，请使用<code>$ _POST [&#39;username&#39;]</code>。如果用户名在URL中，请使用<code>$ _GET [&#39;username&#39;]</code>。如果您不关心值的来源，请使用<code>$ _REQUEST [&#39;username&#39;]</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$post_value = $_POST[<span class="string">'post_value'</span>];</span><br><span class="line">$get_value = $_GET[<span class="string">'get_value'</span>];</span><br><span class="line">$some_variable = $_REQUEST[<span class="string">'some_value'</span>]; </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>$ _REQUEST</code>是<code>$ _GET</code>，<code>$ _POST</code>和<code>$ _COOKIE</code>数组的联合。如果您有两个或多个相同参数名称的值，请注意PHP使用的值。默认顺序是<code>cookie</code>，<code>POST</code>，然后是<code>GET</code>。</p>
+<h2 id="推荐的安全配置选项"><a href="#推荐的安全配置选项" class="headerlink" title="推荐的安全配置选项"></a>推荐的安全配置选项</h2><h1 id="SQL注入攻击"><a href="#SQL注入攻击" class="headerlink" title="SQL注入攻击"></a>SQL注入攻击</h1><h1 id="防止基本的XSS攻击"><a href="#防止基本的XSS攻击" class="headerlink" title="防止基本的XSS攻击"></a>防止基本的XSS攻击</h1><h1 id="使用SafeHTML"><a href="#使用SafeHTML" class="headerlink" title="使用SafeHTML"></a>使用SafeHTML</h1><h1 id="使用单向哈希保护数据"><a href="#使用单向哈希保护数据" class="headerlink" title="使用单向哈希保护数据"></a>使用单向哈希保护数据</h1><h1 id="使用Mcrypt加密数据"><a href="#使用Mcrypt加密数据" class="headerlink" title="使用Mcrypt加密数据"></a>使用Mcrypt加密数据</h1><h1 id="生成随机密码"><a href="#生成随机密码" class="headerlink" title="生成随机密码"></a>生成随机密码</h1><p><a href="https://www.codeproject.com/Articles/363897/PHP-Security" target="_blank" rel="noopener">查看原文</a></p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChat.jpg" alt="Geehon 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Geehon 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Geehon</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://geehon.github.io/post/fafef4eb.html" title="PHP开发安全问题总结">https://geehon.github.io/post/fafef4eb.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"></i> PHP</a>
+          
+            <a href="/tags/安全/" rel="tag"><i class="fa fa-tag"></i> 安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/c70e21e5.html" rel="next" title="Gitee(码云)、Github同时配置ssh key">
+                <i class="fa fa-chevron-left"></i> Gitee(码云)、Github同时配置ssh key
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -534,8 +644,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -700,6 +819,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#不要相信表单"><span class="nav-number">2.1.</span> <span class="nav-text">不要相信表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不要相信用户"><span class="nav-number">2.2.</span> <span class="nav-text">不要相信用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭全局变量"><span class="nav-number">2.3.</span> <span class="nav-text">关闭全局变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐的安全配置选项"><span class="nav-number">2.4.</span> <span class="nav-text">推荐的安全配置选项</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL注入攻击"><span class="nav-number">3.</span> <span class="nav-text">SQL注入攻击</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#防止基本的XSS攻击"><span class="nav-number">4.</span> <span class="nav-text">防止基本的XSS攻击</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用SafeHTML"><span class="nav-number">5.</span> <span class="nav-text">使用SafeHTML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用单向哈希保护数据"><span class="nav-number">6.</span> <span class="nav-text">使用单向哈希保护数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Mcrypt加密数据"><span class="nav-number">7.</span> <span class="nav-text">使用Mcrypt加密数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成随机密码"><span class="nav-number">8.</span> <span class="nav-text">生成随机密码</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -856,6 +992,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -895,6 +1035,8 @@
 
 
 
+
+  
 
 
   
@@ -1249,7 +1391,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script>
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 

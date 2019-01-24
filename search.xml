@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于如何判断客户端类型]]></title>
+    <url>%2Fpost%2F512841c.html</url>
+    <content type="text"><![CDATA[开发应用有时候会涉及到针对不同的访问类型提供不同的业务处理。以下是分别使用JavaScript和PHP进行判断的简单介绍。 使用JavaScript判断首先来了解一下Navigator 对象，Navigator对象包含有关浏览器的信息，通过该对象的属性可以判断访问的客户端类型。Navigator具体有哪些属性可以访问Navigator属性 使用方法 userAgent属性：使用正则表达式判断navigator.userAgent的信息。 123456789101112131415161718&lt;script type="text/javascript"&gt; function browserRedirect() &#123; var sUserAgent = navigator.userAgent.toLowerCase(); var bIsIpad = sUserAgent.match(/ipad/i) == "ipad"; var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os"; var bIsMidp = sUserAgent.match(/midp/i) == "midp"; var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4"; var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb"; var bIsAndroid = sUserAgent.match(/android/i) == "android"; var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce"; var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile"; if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ) &#123; // 跳转到A页面 window.location.href="A页面"; &#125; &#125; browserRedirect(); &lt;/script&gt; 使用PHP判断原理具体原理是利用$_SERVER[ ]这个数组。客户端对应用进行访问的时候$_SERVER[ ]会携带客户端类型的相关信息，具体的在代码注释里有详细说明。 1234567891011121314151617181920212223242526272829303132333435&lt;?php /* 查看是否为手机端的方法 * 判断是手机访问还是是电脑访问 */ function isMobile() &#123; // 如果有HTTP_X_WAP_PROFILE则一定是移动设备 if (isset ($_SERVER['HTTP_X_WAP_PROFILE'])) return true; //此条摘自TPM智能切换模板引擎，适合TPM开发 if(isset ($_SERVER['HTTP_CLIENT']) &amp;&amp;'PhoneClient'==$_SERVER['HTTP_CLIENT']) return true; //如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息 if (isset ($_SERVER['HTTP_VIA'])) //找不到为flase,否则为true return stristr($_SERVER['HTTP_VIA'], 'wap') ? true : false; //判断手机发送的客户端标志,兼容性有待提高 if (isset ($_SERVER['HTTP_USER_AGENT'])) &#123; $clientkeywords = array( 'nokia','sony','ericsson','mot','samsung','htc','sgh','lg','sharp','sie-','philips','panasonic','alcatel','lenovo','iphone','ipod','blackberry','meizu','android','netfront','symbian','ucweb','windowsce','palm','operamini','operamobi','openwave','nexusone','cldc','midp','wap','mobile' ); //使用正则从HTTP_USER_AGENT中查找手机浏览器的关键字 if (preg_match("/(" . implode('|', $clientkeywords) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))) &#123; return true; &#125; &#125; //协议法，因为有可能不准确，放到最后判断 if (isset ($_SERVER['HTTP_ACCEPT'])) &#123; // 如果只支持wml并且不支持html那一定是移动设备 // 如果支持wml和html但是wml在html之前则是移动设备 if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== false) &amp;&amp; (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === false || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') &lt; strpos($_SERVER['HTTP_ACCEPT'], 'text/html')))) &#123; return true; &#125; &#125; return false; &#125; 使用方法根据isMobile()return的是true还是false执行相关的业务操作。例如： 1234567&lt;?php$mobileClinet = isMobile();if (!$mobileClient) &#123; // 执行手机访问的业务&#125; else &#123; // 执行PC访问的业务&#125;]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于MVC的一些看法]]></title>
+    <url>%2Fpost%2Fb3189365.html</url>
+    <content type="text"><![CDATA[MVC和三层架构MVC 可分为：Model 模型层、View 视图层、Controller 控制层；三层架构为：视图层、控制层、业务逻辑层 架构中，我们可以如此分布：控制层+（（模型层数据访问层）+ 视图层）= 合理架构。 数据模型层顾名思义，用来和数据库进行连接交互，SQL语句当然应该置于此。 模型层中数据访问模块的功能如下：1)实现数据的读取与存储操作。2)实现事务处理。 界面视图层主要是处理和用户进行交互的界面，显示结果或者接受输入。 视图层中用户界面模块的功能如下： 1)与用户的交互，接收用户的各种输入以及输出各种提示信息或处理结果。2)对于输入的数据进行数据校验，过滤非法数据。3)向业务层发送处理请求。 业务控制层进行各种逻辑判断。也就是业务逻辑的封装，如有一客户要下一个用账户付款的订单，但该客户账户内的余额不够，则不该允许此客户下订单，这种逻辑就应放在业务层。 业务层中业务处理模块的功能如下：1)实现各种业务处理逻辑或处理算法。2)验证请求者的权限。3)向数据层发送数据操作的请求。4)向用户层返回处理结果。 MVC的优点大部分用过程语言比如ASP、PHP开发出来的Web应用，初始的开发模板就是混合层的数据编程。例如，直接向数据库发送请求并用HTML显示，开发速度往往比较快，但由于数据页面的分离不是很直接，因而很难体现出业务模型的样子或者模型的重用性。产品设计弹性力度很小，很难满足用户的变化性需求。MVC要求对应用分层，虽然要花费额外的工作，但产品的结构清晰，产品的应用通过模型可以得到更好地体现。 首先，最重要的是应该有多个视图对应一个模型的能力。在目前用户需求的快速变化下，可能有多种方式访问应用的要求。例如，订单模型可能有本系统的订单，也有网上订单，或者其他系统的订单，但对于订单的处理都是一样，也就是说订单的处理是一致的。按MVC设计模式，一个订单模型以及多个视图即可解决问题。这样减少了代码的复制，即减少了代码的维护量，一旦模型发生改变，也易于维护。 其次，由于模型返回的数据不带任何显示格式，因而这些模型也可直接应用于接口的使用。 其次控制层的概念也很有效，由于它把不同的模型和不同的视图组合在一起完成不同的请求，因此，控制层可以说是包含了用户请求权限的概念。 最后，它还有利于软件工程化管理。由于不同的层各司其职，每一层不同的应用具有某些相同的特征，有利于通过工程化、工具化产生管理程序代码。 MVC的不足增加了系统结构和实现的复杂性。对于简单的界面，严格遵循MVC，使模型、视图与控制器分离，会增加结构的复杂性，并可能产生过多的更新操作，降低运行效率。 视图与控制器间的过于紧密的连接。视图与控制器是相互分离，但确实联系紧密的部件，视图没有控制器的存在，其应用是很有限的，反之亦然，这样就妨碍了他们的独立重用。 视图对模型数据的低效率访问。依据模型操作接口的不同，视图可能需要多次调用才能获得足够的显示数据。对未变化数据的不必要的频繁访问，也将损害操作性能。 目前，一般高级的界面工具或构造器不支持MVC架构。改造这些工具以适应MVC需要和建立分离的部件的代价是很高的，从而造成使用MVC的困难。]]></content>
+      <categories>
+        <category>看法</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>MVC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PHP开发安全问题总结]]></title>
     <url>%2Fpost%2Ffafef4eb.html</url>
     <content type="text"><![CDATA[引言提供Internet服务时，在开发代码时必须始终牢记安全性。大多数PHP脚本对安全问题都不敏感；特别是对大多数没有经验的开发者来说。但是，基于对代码重要性，非常有必要采用一致的安全策略。当你在服务器上放置任何财产有关的东西时，很可能会有人试图随便破解它。创建一个论坛程序或任何类型的购物车，被攻击的可能性就会有所上升。 背景以下是保护您的网络内容的一些一般安全准则： 不要相信表单利用表单攻击是很寻常的。通过使用简单的JavaScript技巧，您可以限制您的表单以仅允许的字段。对于一般的Javascript前台验证，由于无法得知用户的行为，例如用户关闭了浏览器的Javascript引擎或发布自定义表单数据时，客户端验证会弹出窗口。 用户主要通过表单参数与脚本进行交互，因此它们也成了最大的安全风险。这告诉我们什么？要始终验证传递给PHP脚本的任何数据。在本文中，我们将向您展示如何分析和防止跨站点脚本（XSS）攻击，严重的话会劫持你的用户凭据。您还将了解如何防止可能污染或破坏数据的MySQL注入攻击。 不要相信用户要始终假设您的网站收集的每一条数据都充满了有害的代码。对每条数据都要进行过滤，即使你肯定没有人试图攻击你的应用。 关闭全局变量最大安全漏洞是启用了register_globals配置参数。不过幸运的是，它在PHP 4.2及更高版本中默认关闭。如果register_globals打开，那么你可以通过在服务器的php.ini文件中将register_globals变量设置为Off来禁用此功能。 1register_globals = Off 新手程序员查看注册的全局变量是一种便利，但他们没有意识到这个设置有多危险。启用了全局变量的服务器会自动将全局变量分配给任何表单参数。为了了解这是如何工作的以及为什么这是危险的，让我们看一个例子。 假设您有一个名为process.php的脚本，它将表单数据输入到您的用户数据库中。原始表单看起来像这样： 1&lt;input name="username" type="text" size="15" maxlength="64"&gt; 运行process.php时，启用了已注册全局变量的PHP会将此参数的值放入$ username变量中。通过$ _POST [&#39;username&#39;]或$ _GET [&#39;username&#39;]可以节省一些打字输入。但不幸的是，这也造成了一个安全问题。因为PHP为通过GET或POST参数发送到脚本的任何值设置了一个变量，如果你没有显式初始化变量并且你不希望有人操纵它，这是一个大问题。 以下面的脚本为例 - 如果$ authorized变量为true，它会向用户显示机密数据。在正常情况下，仅当用户已通过假设的authenticated_user()函数进行了正确的身份验证时，$ authorized变量才会设置为true。但是如果你有register_globals活动，任何人都可以发送一个GET参数，如authorized = 1来覆盖这个： 123456&lt;?php// Define $authorized = true only if user is authenticatedif (authenticated_user()) &#123; $authorized = true;&#125;?&gt; 这个场景寓意是你应该从预定义的服务器变量中提取表单数据。通过发布的表单传递到您的网页的所有数据都会自动存储在名为$ _POST的大型数组中，并且所有GET数据都存储在名为$ _GET的大型数组中。文件上载信息存储在名为$ _FILES的特殊数组中。此外，还有一个名为$ _REQUEST的组合变量。 要从POST方法表单访问用户名字段，请使用$ _POST [&#39;username&#39;]。如果用户名在URL中，请使用$ _GET [&#39;username&#39;]。如果您不关心值的来源，请使用$ _REQUEST [&#39;username&#39;]。 12345&lt;?php$post_value = $_POST['post_value'];$get_value = $_GET['get_value'];$some_variable = $_REQUEST['some_value']; ?&gt; $ _REQUEST是$ _GET，$ _POST和$ _COOKIE数组的联合。如果您有两个或多个相同参数名称的值，请注意PHP使用的值。默认顺序是cookie，POST，然后是GET。 推荐的安全配置选项SQL注入攻击防止基本的XSS攻击使用SafeHTML使用单向哈希保护数据使用Mcrypt加密数据生成随机密码查看原文]]></content>
@@ -32,8 +56,8 @@
         <category>PHP</category>
       </categories>
       <tags>
-        <tag>laravel</tag>
         <tag>PHP</tag>
+        <tag>laravel</tag>
         <tag>PHPstrom</tag>
       </tags>
   </entry>
@@ -45,8 +69,8 @@
         <category>PHP</category>
       </categories>
       <tags>
-        <tag>laravel</tag>
         <tag>PHP</tag>
+        <tag>laravel</tag>
       </tags>
   </entry>
   <entry>

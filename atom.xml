@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://geehon.github.io/"/>
-  <updated>2019-01-21T10:43:41.830Z</updated>
+  <updated>2019-01-24T11:20:24.137Z</updated>
   <id>https://geehon.github.io/</id>
   
   <author>
@@ -15,6 +15,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于如何判断客户端类型</title>
+    <link href="https://geehon.github.io/post/512841c.html"/>
+    <id>https://geehon.github.io/post/512841c.html</id>
+    <published>2019-01-24T11:18:37.000Z</published>
+    <updated>2019-01-24T11:20:24.137Z</updated>
+    
+    <content type="html"><![CDATA[<p>开发应用有时候会涉及到针对不同的访问类型提供不同的业务处理。以下是分别使用JavaScript和PHP进行判断的简单介绍。</p><h3 id="使用JavaScript判断"><a href="#使用JavaScript判断" class="headerlink" title="使用JavaScript判断"></a>使用JavaScript判断</h3><p>首先来了解一下<code>Navigator</code> 对象，<code>Navigator</code>对象包含有关浏览器的信息，通过该对象的属性可以判断访问的客户端类型。<code>Navigator</code>具体有哪些属性可以访问<a href="http://www.w3school.com.cn/jsref/dom_obj_navigator.asp" target="_blank" rel="noopener">Navigator属性</a></p><h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><ul><li><code>userAgent</code>属性：使用正则表达式判断<code>navigator.userAgent</code>的信息。</li></ul><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined">  </span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">browserRedirect</span>(<span class="params"></span>) </span>&#123; </span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> sUserAgent = navigator.userAgent.toLowerCase();  </span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> bIsIpad = sUserAgent.match(<span class="regexp">/ipad/i</span>) == <span class="string">"ipad"</span>;  </span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> bIsIphoneOs = sUserAgent.match(<span class="regexp">/iphone os/i</span>) == <span class="string">"iphone os"</span>;  </span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> bIsMidp = sUserAgent.match(<span class="regexp">/midp/i</span>) == <span class="string">"midp"</span>;  </span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> bIsUc7 = sUserAgent.match(<span class="regexp">/rv:1.2.3.4/i</span>) == <span class="string">"rv:1.2.3.4"</span>;  </span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> bIsUc = sUserAgent.match(<span class="regexp">/ucweb/i</span>) == <span class="string">"ucweb"</span>;  </span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> bIsAndroid = sUserAgent.match(<span class="regexp">/android/i</span>) == <span class="string">"android"</span>;  </span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> bIsCE = sUserAgent.match(<span class="regexp">/windows ce/i</span>) == <span class="string">"windows ce"</span>;  </span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> bIsWM = sUserAgent.match(<span class="regexp">/windows mobile/i</span>) == <span class="string">"windows mobile"</span>;  </span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ) &#123;</span></span><br><span class="line"><span class="javascript">       <span class="comment">// 跳转到A页面</span></span></span><br><span class="line"><span class="javascript">       <span class="built_in">window</span>.location.href=<span class="string">"A页面"</span>;</span></span><br><span class="line"><span class="undefined">  &#125;        </span></span><br><span class="line"><span class="undefined">&#125;  </span></span><br><span class="line"><span class="undefined">    browserRedirect();          </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="使用PHP判断"><a href="#使用PHP判断" class="headerlink" title="使用PHP判断"></a>使用PHP判断</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>具体原理是利用<code>$_SERVER[ ]</code>这个数组。客户端对应用进行访问的时候<code>$_SERVER[ ]</code>会携带客户端类型的相关信息，具体的在代码注释里有详细说明。</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/* 查看是否为手机端的方法</span></span><br><span class="line"><span class="comment"> * 判断是手机访问还是是电脑访问</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isMobile</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 如果有HTTP_X_WAP_PROFILE则一定是移动设备</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span> ($_SERVER[<span class="string">'HTTP_X_WAP_PROFILE'</span>]))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="comment">//此条摘自TPM智能切换模板引擎，适合TPM开发</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span> ($_SERVER[<span class="string">'HTTP_CLIENT'</span>]) &amp;&amp;<span class="string">'PhoneClient'</span>==$_SERVER[<span class="string">'HTTP_CLIENT'</span>])</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="comment">//如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span> ($_SERVER[<span class="string">'HTTP_VIA'</span>]))</span><br><span class="line">        <span class="comment">//找不到为flase,否则为true</span></span><br><span class="line">        <span class="keyword">return</span> stristr($_SERVER[<span class="string">'HTTP_VIA'</span>], <span class="string">'wap'</span>) ? <span class="keyword">true</span> : <span class="keyword">false</span>;</span><br><span class="line">    <span class="comment">//判断手机发送的客户端标志,兼容性有待提高</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span> ($_SERVER[<span class="string">'HTTP_USER_AGENT'</span>])) &#123;</span><br><span class="line">        $clientkeywords = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'nokia'</span>,<span class="string">'sony'</span>,<span class="string">'ericsson'</span>,<span class="string">'mot'</span>,<span class="string">'samsung'</span>,<span class="string">'htc'</span>,<span class="string">'sgh'</span>,<span class="string">'lg'</span>,<span class="string">'sharp'</span>,<span class="string">'sie-'</span>,<span class="string">'philips'</span>,<span class="string">'panasonic'</span>,<span class="string">'alcatel'</span>,<span class="string">'lenovo'</span>,<span class="string">'iphone'</span>,<span class="string">'ipod'</span>,<span class="string">'blackberry'</span>,<span class="string">'meizu'</span>,<span class="string">'android'</span>,<span class="string">'netfront'</span>,<span class="string">'symbian'</span>,<span class="string">'ucweb'</span>,<span class="string">'windowsce'</span>,<span class="string">'palm'</span>,<span class="string">'operamini'</span>,<span class="string">'operamobi'</span>,<span class="string">'openwave'</span>,<span class="string">'nexusone'</span>,<span class="string">'cldc'</span>,<span class="string">'midp'</span>,<span class="string">'wap'</span>,<span class="string">'mobile'</span></span><br><span class="line">        );</span><br><span class="line">        <span class="comment">//使用正则从HTTP_USER_AGENT中查找手机浏览器的关键字</span></span><br><span class="line">        <span class="keyword">if</span> (preg_match(<span class="string">"/("</span> . implode(<span class="string">'|'</span>, $clientkeywords) . <span class="string">")/i"</span>, strtolower($_SERVER[<span class="string">'HTTP_USER_AGENT'</span>]))) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//协议法，因为有可能不准确，放到最后判断</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span> ($_SERVER[<span class="string">'HTTP_ACCEPT'</span>])) &#123;</span><br><span class="line">        <span class="comment">// 如果只支持wml并且不支持html那一定是移动设备</span></span><br><span class="line">        <span class="comment">// 如果支持wml和html但是wml在html之前则是移动设备</span></span><br><span class="line">        <span class="keyword">if</span> ((strpos($_SERVER[<span class="string">'HTTP_ACCEPT'</span>], <span class="string">'vnd.wap.wml'</span>) !== <span class="keyword">false</span>) &amp;&amp; (strpos($_SERVER[<span class="string">'HTTP_ACCEPT'</span>], <span class="string">'text/html'</span>) === <span class="keyword">false</span> || (strpos($_SERVER[<span class="string">'HTTP_ACCEPT'</span>], <span class="string">'vnd.wap.wml'</span>) &lt; strpos($_SERVER[<span class="string">'HTTP_ACCEPT'</span>], <span class="string">'text/html'</span>)))) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><h4 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h4><p>根据<code>isMobile()</code>return的是<code>true</code>还是<code>false</code>执行相关的业务操作。例如：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$mobileClinet = isMobile();</span><br><span class="line"><span class="keyword">if</span> (!$mobileClient) &#123;</span><br><span class="line">    <span class="comment">// 执行手机访问的业务</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 执行PC访问的业务</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;开发应用有时候会涉及到针对不同的访问类型提供不同的业务处理。以下是分别使用JavaScript和PHP进行判断的简单介绍。&lt;/p&gt;
+&lt;h3 id=&quot;使用JavaScript判断&quot;&gt;&lt;a href=&quot;#使用JavaScript判断&quot; class=&quot;headerlink&quot; ti
+      
+    
+    </summary>
+    
+      <category term="PHP" scheme="https://geehon.github.io/categories/PHP/"/>
+    
+    
+      <category term="JavaScript" scheme="https://geehon.github.io/tags/JavaScript/"/>
+    
+      <category term="PHP" scheme="https://geehon.github.io/tags/PHP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于MVC的一些看法</title>
+    <link href="https://geehon.github.io/post/b3189365.html"/>
+    <id>https://geehon.github.io/post/b3189365.html</id>
+    <published>2019-01-24T11:14:43.000Z</published>
+    <updated>2019-01-24T11:17:20.877Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="MVC和三层架构"><a href="#MVC和三层架构" class="headerlink" title="MVC和三层架构"></a>MVC和三层架构</h2><p>MVC 可分为：<code>Model 模型层</code>、<code>View 视图层</code>、<code>Controller 控制层</code>；<br>三层架构为：视图层、控制层、业务逻辑层</p><p>架构中，我们可以如此分布：<br>控制层+（（模型层数据访问层）+ 视图层）= 合理架构。</p><h3 id="数据模型层"><a href="#数据模型层" class="headerlink" title="数据模型层"></a>数据模型层</h3><p>顾名思义，用来和数据库进行连接交互，SQL语句当然应该置于此。</p><p>模型层中数据访问模块的功能如下：<br>1)实现数据的读取与存储操作。<br>2)实现事务处理。</p><h3 id="界面视图层"><a href="#界面视图层" class="headerlink" title="界面视图层"></a>界面视图层</h3><p>主要是处理和用户进行交互的界面，显示结果或者接受输入。</p><p>视图层中用户界面模块的功能如下：</p><p>1)与用户的交互，接收用户的各种输入以及输出各种提示信息或处理结果。<br>2)对于输入的数据进行数据校验，过滤非法数据。<br>3)向业务层发送处理请求。</p><h3 id="业务控制层"><a href="#业务控制层" class="headerlink" title="业务控制层"></a>业务控制层</h3><p>进行各种逻辑判断。也就是业务逻辑的封装，如有一客户要下一个用账户付款的订单，但该客户账户内的余额不够，则不该允许此客户下订单，这种逻辑就应放在业务层。</p><p>业务层中业务处理模块的功能如下：<br>1)实现各种业务处理逻辑或处理算法。<br>2)验证请求者的权限。<br>3)向数据层发送数据操作的请求。<br>4)向用户层返回处理结果。</p><h2 id="MVC的优点"><a href="#MVC的优点" class="headerlink" title="MVC的优点"></a>MVC的优点</h2><p>大部分用过程语言比如ASP、PHP开发出来的Web应用，初始的开发模板就是混合层的数据编程。例如，直接向数据库发送请求并用HTML显示，开发速度往往比较快，但由于数据页面的分离不是很直接，因而很难体现出业务模型的样子或者模型的重用性。产品设计弹性力度很小，很难满足用户的变化性需求。MVC要求对应用分层，虽然要花费额外的工作，但产品的结构清晰，产品的应用通过模型可以得到更好地体现。 </p><p><strong>首先</strong>，最重要的是<strong>应该有多个视图对应一个模型的能力</strong>。在目前用户需求的快速变化下，可能有多种方式访问应用的要求。例如，订单模型可能有本系统的订单，也有网上订单，或者其他系统的订单，但对于订单的处理都是一样，也就是说订单的处理是一致的。按MVC设计模式，一个订单模型以及多个视图即可解决问题。这样减少了代码的复制，即减少了代码的维护量，一旦模型发生改变，也易于维护。 其次，由于模型返回的数据不带任何显示格式，因而这些模型也可直接应用于接口的使用。</p><p><strong>其次</strong>控制层的概念也很有效，由于它<strong>把不同的模型和不同的视图组合在一起完成不同的请求</strong>，因此，控制层可以说是包含了用户请求权限的概念。 </p><p><strong>最后</strong>，它还有<strong>利于软件工程化管理</strong>。由于不同的层各司其职，每一层不同的应用具有某些相同的特征，有利于通过工程化、工具化产生管理程序代码。 </p><h2 id="MVC的不足"><a href="#MVC的不足" class="headerlink" title="MVC的不足"></a>MVC的不足</h2><p><strong>增加了系统结构和实现的复杂性</strong>。对于简单的界面，严格遵循MVC，使模型、视图与控制器分离，会增加结构的复杂性，并可能产生过多的更新操作，降低运行效率。</p><p><strong>视图与控制器间的过于紧密的连接</strong>。视图与控制器是相互分离，但确实联系紧密的部件，视图没有控制器的存在，其应用是很有限的，反之亦然，这样就妨碍了他们的独立重用。 </p><p><strong>视图对模型数据的低效率访问</strong>。依据模型操作接口的不同，视图可能需要多次调用才能获得足够的显示数据。对未变化数据的不必要的频繁访问，也将损害操作性能。 </p><p>目前，一般高级的界面工具或构造器不支持MVC架构。改造这些工具以适应MVC需要和建立分离的部件的<strong>代价是很高</strong>的，从而造成使用MVC的困难。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;MVC和三层架构&quot;&gt;&lt;a href=&quot;#MVC和三层架构&quot; class=&quot;headerlink&quot; title=&quot;MVC和三层架构&quot;&gt;&lt;/a&gt;MVC和三层架构&lt;/h2&gt;&lt;p&gt;MVC 可分为：&lt;code&gt;Model 模型层&lt;/code&gt;、&lt;code&gt;View 视图层&lt;
+      
+    
+    </summary>
+    
+      <category term="看法" scheme="https://geehon.github.io/categories/%E7%9C%8B%E6%B3%95/"/>
+    
+    
+      <category term="技术" scheme="https://geehon.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="MVC" scheme="https://geehon.github.io/tags/MVC/"/>
+    
+  </entry>
   
   <entry>
     <title>PHP开发安全问题总结</title>
@@ -86,9 +141,9 @@
       <category term="PHP" scheme="https://geehon.github.io/categories/PHP/"/>
     
     
-      <category term="laravel" scheme="https://geehon.github.io/tags/laravel/"/>
-    
       <category term="PHP" scheme="https://geehon.github.io/tags/PHP/"/>
+    
+      <category term="laravel" scheme="https://geehon.github.io/tags/laravel/"/>
     
       <category term="PHPstrom" scheme="https://geehon.github.io/tags/PHPstrom/"/>
     
@@ -114,9 +169,9 @@
       <category term="PHP" scheme="https://geehon.github.io/categories/PHP/"/>
     
     
-      <category term="laravel" scheme="https://geehon.github.io/tags/laravel/"/>
-    
       <category term="PHP" scheme="https://geehon.github.io/tags/PHP/"/>
+    
+      <category term="laravel" scheme="https://geehon.github.io/tags/laravel/"/>
     
   </entry>
   

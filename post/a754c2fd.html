@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-CN">
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,7 +75,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Gemini',
     version: '6.7.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: false,
@@ -100,7 +100,7 @@
 
 
   <meta name="description" content="Laravel 5.4 把默认数据库字符集更改成 utf8mb4，作为对存储 emojis 的支持。只要你运行的是 MySQL v5.7.7 及更高版本，那么你就下面提到的错误。  SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 byt">
-<meta name="keywords" content="laravel,PHP">
+<meta name="keywords" content="PHP,laravel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel 进行数据迁移（migration）报错解决办法">
 <meta property="og:url" content="https://geehon.github.io/post/a754c2fd.html">
@@ -230,6 +230,23 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -508,35 +525,6 @@
       
     
     
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div></div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/WeChat.jpg" alt="Geehon 微信支付">
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Geehon 支付宝">
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
 
     
       <div>
@@ -567,9 +555,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/laravel/" rel="tag"><i class="fa fa-tag"></i> laravel</a>
-          
             <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"></i> PHP</a>
+          
+            <a href="/tags/laravel/" rel="tag"><i class="fa fa-tag"></i> laravel</a>
           
         </div>
       
@@ -830,7 +818,7 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Geehon</span>
 
@@ -923,13 +911,10 @@
 
 
 
-  
-    
-    
-  
-  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
+  
+  
 
 
 
@@ -950,6 +935,12 @@
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
 
   
 
@@ -967,6 +958,7 @@
   <script src="/js/src/affix.js?v=6.7.0"></script>
 
   <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
 
 
 

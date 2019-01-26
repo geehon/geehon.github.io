@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://geehon.github.io/"/>
-  <updated>2019-01-26T13:01:18.648Z</updated>
+  <updated>2019-01-26T13:30:16.546Z</updated>
   <id>https://geehon.github.io/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RESTful API设计</title>
+    <link href="https://geehon.github.io/post/16995e02.html"/>
+    <id>https://geehon.github.io/post/16995e02.html</id>
+    <published>2019-01-26T13:29:32.000Z</published>
+    <updated>2019-01-26T13:30:16.546Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="PHP" scheme="https://geehon.github.io/categories/PHP/"/>
+    
+    
+      <category term="接口" scheme="https://geehon.github.io/tags/%E6%8E%A5%E5%8F%A3/"/>
+    
+  </entry>
   
   <entry>
     <title></title>

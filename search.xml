@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[RESTful API设计]]></title>
+    <url>%2Fpost%2F16995e02.html</url>
+    <content type="text"></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>接口</tag>
+      </tags>
+  </entry>
+  <entry>
     <title></title>
     <url>%2Fpost%2F0.html</url>
     <content type="text"></content>

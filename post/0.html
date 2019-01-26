@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,6 +50,38 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
 
 
 
@@ -75,9 +107,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -99,29 +131,27 @@
 
 
 
-  <meta name="description" content="PHP标准建议根据PSR Workflow Bylaw，每个PSR都具有正在处理的状态。一旦提案通过了入口投票，它将在此处列为“草稿”。除非PSR标记为“已接受”，否则可能会发生变化。草稿可能会发生巨大变化，但审核只会有微小的变化。">
-<meta name="keywords" content="PHP,PSR,代码规范">
+  <meta name="description" content="学而后知不足">
+<meta name="keywords" content="Geehon博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP 基本代码标准">
-<meta property="og:url" content="https://geehon.github.io/post/ae1a60a8.html">
-<meta property="og:site_name" content="Geehon">
-<meta property="og:description" content="PHP标准建议根据PSR Workflow Bylaw，每个PSR都具有正在处理的状态。一旦提案通过了入口投票，它将在此处列为“草稿”。除非PSR标记为“已接受”，否则可能会发生变化。草稿可能会发生巨大变化，但审核只会有微小的变化。">
+<meta property="og:title" content="Geehon&#39;s Blog">
+<meta property="og:url" content="https://geehon.github.io/post/0.html">
+<meta property="og:site_name" content="Geehon&#39;s Blog">
+<meta property="og:description" content="学而后知不足">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://gitee.com/GHong/blog/raw/master/picture/PRS1.png">
-<meta property="og:updated_time" content="2019-01-20T07:09:37.479Z">
+<meta property="og:updated_time" content="2019-01-26T13:01:18.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP 基本代码标准">
-<meta name="twitter:description" content="PHP标准建议根据PSR Workflow Bylaw，每个PSR都具有正在处理的状态。一旦提案通过了入口投票，它将在此处列为“草稿”。除非PSR标记为“已接受”，否则可能会发生变化。草稿可能会发生巨大变化，但审核只会有微小的变化。">
-<meta name="twitter:image" content="https://gitee.com/GHong/blog/raw/master/picture/PRS1.png">
+<meta name="twitter:title" content="Geehon&#39;s Blog">
+<meta name="twitter:description" content="学而后知不足">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Geehon" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Geehon's Blog" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="https://geehon.github.io/post/ae1a60a8.html">
+  <link rel="canonical" href="https://geehon.github.io/post/0.html">
 
 
 
@@ -131,7 +161,7 @@
   };
 </script>
 
-  <title>PHP 基本代码标准 | Geehon</title>
+  <title> | Geehon's Blog</title>
   
 
 
@@ -190,7 +220,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Geehon</span>
+        <span class="site-title">Geehon's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -238,7 +268,7 @@
         
         
           
-          <li class="menu-item menu-item-tags">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -248,7 +278,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         
@@ -272,7 +302,7 @@
         
         
           
-          <li class="menu-item menu-item-archives">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -282,7 +312,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -315,6 +345,9 @@
       
     </ul>
   
+
+  
+    
 
   
 
@@ -358,9 +391,6 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-            
-
-          
           <div id="content" class="content">
             
 
@@ -374,13 +404,15 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://geehon.github.io/post/ae1a60a8.html">
+    <link itemprop="mainEntityOfPage" href="https://geehon.github.io/post/0.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Geehon">
@@ -389,7 +421,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Geehon">
+      <meta itemprop="name" content="Geehon's Blog">
     </span>
 
     
@@ -397,7 +429,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">PHP 基本代码标准
+          <h2 class="post-title" itemprop="name headline">
 
               
             
@@ -423,46 +455,16 @@
                 
               
 
-              <time title="创建时间：2019-01-13 18:41:53" itemprop="dateCreated datePublished" datetime="2019-01-13T18:41:53+08:00">2019-01-13</time>
+              <time title="创建时间：2019-01-26 18:43:35 / 修改时间：21:01:18" itemprop="dateCreated datePublished" datetime="2019-01-26T18:43:35+08:00">2019-01-26</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-20 15:09:37" itemprop="dateModified" datetime="2019-01-20T15:09:37+08:00">2019-01-20</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -475,8 +477,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
-                <a href="/post/ae1a60a8.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/post/ae1a60a8.html" itemprop="commentCount"></span>
+                <a href="/post/0.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/post/0.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -511,50 +513,7 @@
       
 
       
-        <p><img src="https://gitee.com/GHong/blog/raw/master/picture/PRS1.png" alt=""></p>
-<h1 id="PHP标准建议"><a href="#PHP标准建议" class="headerlink" title="PHP标准建议"></a><a href="https://www.php-fig.org/psr/psr-1/" target="_blank" rel="noopener">PHP标准建议</a></h1><p>根据<a href="https://www.php-fig.org/bylaws/psr-workflow" target="_blank" rel="noopener">PSR Workflow Bylaw</a>，每个PSR都具有正在处理的状态。一旦提案通过了入口投票，它将在此处列为“草稿”。除非PSR标记为“已接受”，否则可能会发生变化。草稿可能会发生巨大变化，但审核只会有微小的变化。</p>
-<a id="more"></a>
-<p>As also described in the <a href="https://www.php-fig.org/bylaws/psr-workflow" target="_blank" rel="noopener">PSR Workflow Bylaw</a>。提案的编辑或编辑们基本上是PSR的主要贡献者和作者，他们得到两位投票成员的支持。这些投票成员是协调员，负责管理审查阶段和投票以及二次发起人。</p>
-<h2 id="PSR-1：基本编码标准"><a href="#PSR-1：基本编码标准" class="headerlink" title="PSR-1：基本编码标准"></a>PSR-1：基本编码标准</h2><p>标准的这一部分包括应该被认为是确保共享PHP代码之间高水平技术互操作性所需的标准编码元素。</p>
-<p>本文档中的关键词“必须”，“必须”，“必需”，“应该”，“不应该”，“应该”，“不应该”，“推荐”，“可以”和“可选”按照RFC 2119中的描述进行解释。</p>
-<h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><ul>
-<li>文件必须只使用<code>&lt;?php</code>和<code>&lt;?=</code>标签。</li>
-<li>对于PHP代码，文件必须仅使用没有BOM的UTF-8。</li>
-<li>文件应该声明符号（类，函数，常量等）或引起副作用（例如生成输出，更改.ini设置等），但不应该同时出现。</li>
-<li>命名空间和类必须遵循“自动加载”PSR：[PSR-0，PSR-4]。</li>
-<li>类名必须使用首字母大写的驼峰式进行声明。</li>
-<li>类常量必须以全部大写形式用下划线分隔符声明。</li>
-<li>方法名必须使用首字母小写的驼峰式进行。</li>
-</ul>
-<h3 id="2-文件"><a href="#2-文件" class="headerlink" title="2. 文件"></a>2. 文件</h3><h4 id="2-1-PHP标签"><a href="#2-1-PHP标签" class="headerlink" title="2.1. PHP标签"></a>2.1. PHP标签</h4><p>PHP代码必须使用长标签<code>&lt;?php?&gt;</code>或短输出标签<code>&lt;?=?&gt;</code>；不能使用其他标签变体。</p>
-<h4 id="2-2-字符编码"><a href="#2-2-字符编码" class="headerlink" title="2.2. 字符编码"></a>2.2. 字符编码</h4><p>PHP代码必须只使用不带BOM的UTF-8编码。</p>
-<h4 id="2-3-副作用"><a href="#2-3-副作用" class="headerlink" title="2.3. 副作用"></a>2.3. 副作用</h4><p>一份 PHP 文件中 <strong>应该</strong> 要不就只定义新的声明，如类、函数或常量等不产生 <code>副作用</code> 的操作，要不就只书写会产生 <code>副作用</code> 的逻辑操作，但 <strong>不该</strong> 同时具有两者。</p>
-<p>「副作用」(side effects) 一词的意思是，仅仅通过包含文件，不直接声明类、函数和常量等，而执行的逻辑操作。</p>
-<p>「副作用」包含却不仅限于：生成输出，明确使用<code>require</code>或<code>include</code>，连接到外部服务，修改ini设置，发出错误或异常，修改全局或静态变量，读取或写入一个文件，等等。</p>
-<p>以下是具有声明和副作用的文件示例;即要避免的一个例子：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// side effect: change ini settings</span></span><br><span class="line">ini_set(<span class="string">'error_reporting'</span>, E_ALL);</span><br><span class="line"></span><br><span class="line"><span class="comment">// side effect: loads a file</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"file.php"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// side effect: generates output</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;html&gt;\n"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// declaration</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// function body</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以下示例是包含没有副作用的声明的文件;即效仿的例子：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// declaration</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// function body</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// conditional declaration is *not* a side effect</span></span><br><span class="line"><span class="keyword">if</span> (! function_exists(<span class="string">'bar'</span>)) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// function body</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-命名空间和类名"><a href="#3-命名空间和类名" class="headerlink" title="3. 命名空间和类名"></a>3. 命名空间和类名</h3><p>命名空间和类名 <strong>必须</strong> 遵循『自动加载』规范：[PSR-0，PSR-4]。</p>
-<p>这意味着每个类都独立为一个文件，并且至少在一个层次的命名空间内，那就是：顶级组织名（vendor name）。</p>
-<p>类名 <strong>必须</strong>大写开头的驼峰命名方式声明。</p>
-<p>PHP 5.3 及更高版本的代码 <strong>必须</strong> 使用正式的命名空间。</p>
-<p>例如</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// PHP 5.3 and later:</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Vendor</span>\<span class="title">Model</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>PHP 5.2 及更低版本 <strong>应该</strong> 使用伪命名空间，约定俗成，以顶级组织名称 <code>Vendor_</code> 为类名前缀：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// PHP 5.2.x and earlier:</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vendor_Model_Foo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="4-类的常量、属性和方法"><a href="#4-类的常量、属性和方法" class="headerlink" title="4. 类的常量、属性和方法"></a>4. 类的常量、属性和方法</h3><p>此处的「类」指代所有的类、接口以及可复用代码块（traits）</p>
-<h4 id="4-1-常量"><a href="#4-1-常量" class="headerlink" title="4.1. 常量"></a>4.1. 常量</h4><p>类的常量中所有字母都 <strong>必须</strong> 大写，词间以下划线分隔。例如：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Vendor</span>\<span class="title">Model</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> VERSION = <span class="string">'1.0'</span>;</span><br><span class="line">    <span class="keyword">const</span> DATE_APPROVED = <span class="string">'2012-06-01'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="4-2-属性"><a href="#4-2-属性" class="headerlink" title="4.2. 属性"></a>4.2. 属性</h4><p>类的属性命名 <strong>可以</strong> 遵循：</p>
-<ul>
-<li>大写开头的驼峰式 </li>
-<li>小写开头的驼峰式</li>
-<li>下划线分隔式 </li>
-</ul>
-<p>本规范不做强制要求，但无论遵循哪种命名方式，都 <strong>应该</strong> 在一定的范围内保持一致。这个范围可以是整个团队、整个包、整个类或整个方法。</p>
-<h4 id="4-3-方法"><a href="#4-3-方法" class="headerlink" title="4.3. 方法"></a>4.3. 方法</h4><p>方法名称 <strong>必须</strong> 用小写开头的驼峰命名规范。</p>
-
+        
       
     </div>
 
@@ -587,26 +546,16 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://geehon.github.io/post/ae1a60a8.html" title="PHP 基本代码标准">https://geehon.github.io/post/ae1a60a8.html</a>
+    <a href="https://geehon.github.io/post/0.html">https://geehon.github.io/post/0.html</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC</a> 许可协议。转载请注明出处！</li>
 </ul>
 
       </div>
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"></i> PHP</a>
-          
-            <a href="/tags/PSR/" rel="tag"><i class="fa fa-tag"></i> PSR</a>
-          
-            <a href="/tags/代码规范/" rel="tag"><i class="fa fa-tag"></i> 代码规范</a>
-          
-        </div>
       
 
       
@@ -617,15 +566,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/post/512841c.html" rel="next" title="关于如何判断客户端类型">
+                <i class="fa fa-chevron-left"></i> 关于如何判断客户端类型
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/e54bdc58.html" rel="prev" title="PHP代码风格规范">
-                PHP代码风格规范 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -669,22 +618,15 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -734,7 +676,7 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  
+                  <a href="/tags/index.html">
                     
                     
                       
@@ -767,7 +709,7 @@
                     
                     <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
-                  
+                  </a>
                 </div>
               
             </nav>
@@ -788,45 +730,37 @@
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="https://github.com/geehon" title="GitHub &rarr; https://github.com/geehon" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/geehon" title="GitHub &rarr; https://github.com/geehon" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="mailto:geehon.liao@gmail.com" title="E-Mail &rarr; mailto:geehon.liao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:geehon.liao@gmail.com" title="E-Mail &rarr; mailto:geehon.liao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="https://weibo.com/u/3545818897" title="Weibo &rarr; https://weibo.com/u/3545818897" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  <a href="https://weibo.com/u/3545818897" title="Weibo &rarr; https://weibo.com/u/3545818897" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="https://www.facebook.com/profile.php?id=100010614164072" title="FB Page &rarr; https://www.facebook.com/profile.php?id=100010614164072" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  <a href="https://www.facebook.com/profile.php?id=100010614164072" title="FB Page &rarr; https://www.facebook.com/profile.php?id=100010614164072" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i></a>
                 </span>
               
             </div>
@@ -839,7 +773,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc.svg" alt="Creative Commons"></a>
              </div>
           
 
@@ -848,20 +782,16 @@
             <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-globe"></i>
-                Links
+                常用链接
               </div>
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://laravel-china.github.io/php-the-right-way/" title="https://laravel-china.github.io/php-the-right-way/" rel="noopener" target="_blank">PHP The Right Way</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://laravel-china.org/" title="https://laravel-china.org/" rel="noopener" target="_blank">Laravel China</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
                     <a href="https://iissnan.com/progit" title="https://iissnan.com/progit" rel="noopener" target="_blank">Pro Git</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://laravel-china.github.io/php-the-right-way/" title="https://laravel-china.github.io/php-the-right-way/" rel="noopener" target="_blank">PHP The Right Way</a>
                   </li>
                 
               </ul>
@@ -877,26 +807,19 @@
       </div>
 
       
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP标准建议"><span class="nav-text">PHP标准建议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PSR-1：基本编码标准"><span class="nav-text">PSR-1：基本编码标准</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-文件"><span class="nav-text">2. 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-PHP标签"><span class="nav-text">2.1. PHP标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-字符编码"><span class="nav-text">2.2. 字符编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-副作用"><span class="nav-text">2.3. 副作用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-命名空间和类名"><span class="nav-text">3. 命名空间和类名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-类的常量、属性和方法"><span class="nav-text">4. 类的常量、属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-常量"><span class="nav-text">4.1. 常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-属性"><span class="nav-text">4.2. 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-方法"><span class="nav-text">4.3. 方法</span></a></li></ol></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
       
-
+         <!-- 插入音乐控件-->
+          <link rel="stylesheet" href="/dist/APlayer.min.css">
+          <div class="weizhi"><div id="aplayer"></div></div>
+          <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+          <script type="text/javascript" src="/dist/music.js"></script>
+          <style>
+          #aplayer {width: 80%; margin: 0 auto;}
+          @media screen and (max-device-width: 400px) {
+          #aplayer {width: 80%;}
+          }
+          </style>
     </div>
   </aside>
 
@@ -1018,6 +941,8 @@
 
 
 
+  
+
 
 
   
@@ -1028,6 +953,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
 
 
   
@@ -1043,9 +971,7 @@
   
 
 
-  <script src="/js/src/affix.js?v=6.7.0"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
 
 
 
@@ -1456,83 +1382,6 @@
 
 
   
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
-
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
-
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
-
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function(i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap');
-      $(e).after($wrap);
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
-        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
-          return $(e).text();
-        }).toArray().join('\n');
-        var ta = document.createElement('textarea');
-        var range = document.createRange(); //For Chrome
-        var sel = window.getSelection(); //For Chrome
-        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-        ta.style.top = yPosition + 'px'; //Prevent page scroll
-        ta.style.position = 'absolute';
-        ta.style.opacity = '0';
-        ta.value = code;
-        ta.textContent = code; //For FireFox
-        ta.contentEditable = true;
-        ta.readOnly = false;
-        document.body.appendChild(ta);
-        range.selectNode(ta);
-        sel.removeAllRanges();
-        sel.addRange(range);
-        ta.setSelectionRange(0, code.length);
-        var result = document.execCommand('copy');
-        
-          if (result) $(this).text('复制成功');
-          else $(this).text('复制失败');
-        
-        ta.blur(); //For iOS
-        $(this).blur();
-      })).on('mouseleave', function(e) {
-        var $b = $(this).find('.copy-btn');
-        setTimeout(function() {
-          $b.text('复制');
-        }, 300);
-      }).append(e);
-    })
-  </script>
-
 
   
 

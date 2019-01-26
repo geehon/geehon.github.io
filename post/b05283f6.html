@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,6 +50,38 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
 
 
 
@@ -75,9 +107,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -104,14 +136,14 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Facebook账号一键登录">
 <meta property="og:url" content="https://geehon.github.io/post/b05283f6.html">
-<meta property="og:site_name" content="Geehon">
+<meta property="og:site_name" content="Geehon&#39;s Blog">
 <meta property="og:description" content="公司最近做的一个项目要求使用Facebook实现一键登录的功能。所谓的Facebook登录就是获取用户在Facebook的资料，通过这些资料（邮箱等）登录或者注册目标网站。这中间Facebook提供了相应的接口，通过这个接口获取用户授权就能拿到相应的用户资料。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gitee.com/GHong/blog/raw/master/picture/facebook.png">
 <meta property="og:image" content="https://gitee.com/GHong/blog/raw/master/picture/fbhuitiao.png">
 <meta property="og:image" content="https://gitee.com/GHong/blog/raw/master/picture/fbyinsi.png">
 <meta property="og:image" content="https://gitee.com/GHong/blog/raw/master/picture/fbkaiguan2.png">
-<meta property="og:updated_time" content="2019-01-20T07:10:13.549Z">
+<meta property="og:updated_time" content="2019-01-26T12:59:09.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Facebook账号一键登录">
 <meta name="twitter:description" content="公司最近做的一个项目要求使用Facebook实现一键登录的功能。所谓的Facebook登录就是获取用户在Facebook的资料，通过这些资料（邮箱等）登录或者注册目标网站。这中间Facebook提供了相应的接口，通过这个接口获取用户授权就能拿到相应的用户资料。">
@@ -119,7 +151,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Geehon" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Geehon's Blog" type="application/atom+xml">
 
 
 
@@ -134,7 +166,7 @@
   };
 </script>
 
-  <title>Facebook账号一键登录 | Geehon</title>
+  <title>Facebook账号一键登录 | Geehon's Blog</title>
   
 
 
@@ -193,7 +225,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Geehon</span>
+        <span class="site-title">Geehon's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -241,7 +273,7 @@
         
         
           
-          <li class="menu-item menu-item-tags">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -251,7 +283,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         
@@ -275,7 +307,7 @@
         
         
           
-          <li class="menu-item menu-item-archives">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -285,7 +317,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -318,6 +350,9 @@
       
     </ul>
   
+
+  
+    
 
   
 
@@ -361,9 +396,6 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-            
-
-          
           <div id="content" class="content">
             
 
@@ -376,6 +408,8 @@
   
   
 
+  
+    <div class="reading-progress-bar"></div>
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -392,7 +426,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Geehon">
+      <meta itemprop="name" content="Geehon's Blog">
     </span>
 
     
@@ -443,7 +477,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-20 15:10:13" itemprop="dateModified" datetime="2019-01-20T15:10:13+08:00">2019-01-20</time>
+                <time title="修改时间：2019-01-26 20:59:09" itemprop="dateModified" datetime="2019-01-26T20:59:09+08:00">2019-01-26</time>
               
             
           </span>
@@ -514,14 +548,14 @@
       
 
       
-        <p><img src="https://gitee.com/GHong/blog/raw/master/picture/facebook.png" alt=""></p>
+        <p><img src="https://gitee.com/GHong/blog/raw/master/picture/facebook.png" width="100%"></p>
 <p>公司最近做的一个项目要求使用Facebook实现一键登录的功能。所谓的Facebook登录就是获取用户在Facebook的资料，通过这些资料（邮箱等）登录或者注册目标网站。这中间Facebook提供了相应的接口，通过这个接口获取用户授权就能拿到相应的用户资料。<a id="more"></a>虽然整个过程完成下来还算比较顺利。这边还是要做一下记录。</p>
 <h2 id="申请应用及配置"><a href="#申请应用及配置" class="headerlink" title="申请应用及配置"></a>申请应用及配置</h2><p>在使用之前，需要先在Facebook开发者平台注册账号，新建应用，然后获取新建应用的编号APPID。相应的流程开发平台写的还是相对比较清楚的，这里就不一一赘述。其中要注意的是：有效 OAuth 跳转 URL要填写正确。</p>
-<p><img src="https://gitee.com/GHong/blog/raw/master/picture/fbhuitiao.png" alt=""></p>
+<p><img src="https://gitee.com/GHong/blog/raw/master/picture/fbhuitiao.png" width="100%"></p>
 <p>还有一个是隐私政策网站的填写。这个关乎应用能不能的公开发布。找到开发平台的控制面板下面有个<code>设置</code>-&gt;<code>基本</code>。在隐私权政策网址里可以填<code>http://wp4fb.com/how-to-add-a-privacy-policy-to-your-apps/</code>（这个不是唯一的，填写的地址有效即可）。然后保存更改。</p>
-<p><img src="https://gitee.com/GHong/blog/raw/master/picture/fbyinsi.png" alt=""></p>
+<p><img src="https://gitee.com/GHong/blog/raw/master/picture/fbyinsi.png" width="100%"></p>
 <p>然后就可以点击应用发布开关，弹窗提示点击确定即可。最后效果是这样的：</p>
-<p><img src="https://gitee.com/GHong/blog/raw/master/picture/fbkaiguan2.png" alt=""></p>
+<p><img src="https://gitee.com/GHong/blog/raw/master/picture/fbkaiguan2.png" width="100%"></p>
 <h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><h3 id="1-检查登录状态"><a href="#1-检查登录状态" class="headerlink" title="1. 检查登录状态"></a>1. 检查登录状态</h3><p>加载网页时应采取的第一步是检查用户是否已使用 Facebook 登录功能登录您的应用。调用 <a href="https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus" target="_blank" rel="noopener"><code>FB.getLoginStatus</code></a> 即可开始此流程。此函数会触发 Facebook 调用，获取登录状态，并调用包含结果的回调函数。</p>
 <p>下面是将在页面加载期间运行以检查用户登录状态的部分代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FB.getLoginStatus(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    statusChangeCallback(response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -575,7 +609,7 @@
     <a href="https://geehon.github.io/post/b05283f6.html" title="Facebook账号一键登录">https://geehon.github.io/post/b05283f6.html</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC</a> 许可协议。转载请注明出处！</li>
 </ul>
 
       </div>
@@ -656,6 +690,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -721,7 +757,7 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  
+                  <a href="/tags/index.html">
                     
                     
                       
@@ -754,7 +790,7 @@
                     
                     <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
-                  
+                  </a>
                 </div>
               
             </nav>
@@ -775,45 +811,37 @@
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="https://github.com/geehon" title="GitHub &rarr; https://github.com/geehon" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/geehon" title="GitHub &rarr; https://github.com/geehon" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="mailto:geehon.liao@gmail.com" title="E-Mail &rarr; mailto:geehon.liao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:geehon.liao@gmail.com" title="E-Mail &rarr; mailto:geehon.liao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="https://weibo.com/u/3545818897" title="Weibo &rarr; https://weibo.com/u/3545818897" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  <a href="https://weibo.com/u/3545818897" title="Weibo &rarr; https://weibo.com/u/3545818897" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="https://www.facebook.com/profile.php?id=100010614164072" title="FB Page &rarr; https://www.facebook.com/profile.php?id=100010614164072" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  <a href="https://www.facebook.com/profile.php?id=100010614164072" title="FB Page &rarr; https://www.facebook.com/profile.php?id=100010614164072" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i></a>
                 </span>
               
             </div>
@@ -826,7 +854,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc.svg" alt="Creative Commons"></a>
              </div>
           
 
@@ -835,20 +863,16 @@
             <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-globe"></i>
-                Links
+                常用链接
               </div>
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://laravel-china.github.io/php-the-right-way/" title="https://laravel-china.github.io/php-the-right-way/" rel="noopener" target="_blank">PHP The Right Way</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://laravel-china.org/" title="https://laravel-china.org/" rel="noopener" target="_blank">Laravel China</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
                     <a href="https://iissnan.com/progit" title="https://iissnan.com/progit" rel="noopener" target="_blank">Pro Git</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://laravel-china.github.io/php-the-right-way/" title="https://laravel-china.github.io/php-the-right-way/" rel="noopener" target="_blank">PHP The Right Way</a>
                   </li>
                 
               </ul>
@@ -883,7 +907,17 @@
       
 
       
-
+         <!-- 插入音乐控件-->
+          <link rel="stylesheet" href="/dist/APlayer.min.css">
+          <div class="weizhi"><div id="aplayer"></div></div>
+          <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+          <script type="text/javascript" src="/dist/music.js"></script>
+          <style>
+          #aplayer {width: 80%; margin: 0 auto;}
+          @media screen and (max-device-width: 400px) {
+          #aplayer {width: 80%;}
+          }
+          </style>
     </div>
   </aside>
 
@@ -1005,6 +1039,8 @@
 
 
 
+  
+
 
 
   
@@ -1015,6 +1051,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
 
 
   
@@ -1030,9 +1069,7 @@
   
 
 
-  <script src="/js/src/affix.js?v=6.7.0"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
 
 
 
@@ -1443,83 +1480,6 @@
 
 
   
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
-
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
-
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
-
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function(i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap');
-      $(e).after($wrap);
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
-        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
-          return $(e).text();
-        }).toArray().join('\n');
-        var ta = document.createElement('textarea');
-        var range = document.createRange(); //For Chrome
-        var sel = window.getSelection(); //For Chrome
-        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-        ta.style.top = yPosition + 'px'; //Prevent page scroll
-        ta.style.position = 'absolute';
-        ta.style.opacity = '0';
-        ta.value = code;
-        ta.textContent = code; //For FireFox
-        ta.contentEditable = true;
-        ta.readOnly = false;
-        document.body.appendChild(ta);
-        range.selectNode(ta);
-        sel.removeAllRanges();
-        sel.addRange(range);
-        ta.setSelectionRange(0, code.length);
-        var result = document.execCommand('copy');
-        
-          if (result) $(this).text('复制成功');
-          else $(this).text('复制失败');
-        
-        ta.blur(); //For iOS
-        $(this).blur();
-      })).on('mouseleave', function(e) {
-        var $b = $(this).find('.copy-btn');
-        setTimeout(function() {
-          $b.text('复制');
-        }, 300);
-      }).append(e);
-    })
-  </script>
-
 
   
 

@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,6 +50,38 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
 
 
 
@@ -75,9 +107,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -104,7 +136,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于MVC的一些看法">
 <meta property="og:url" content="https://geehon.github.io/post/b3189365.html">
-<meta property="og:site_name" content="Geehon">
+<meta property="og:site_name" content="Geehon&#39;s Blog">
 <meta property="og:description" content="MVC和三层架构MVC 可分为：Model 模型层、View 视图层、Controller 控制层；三层架构为：视图层、控制层、业务逻辑层 架构中，我们可以如此分布：控制层+（（模型层数据访问层）+ 视图层）= 合理架构。 数据模型层顾名思义，用来和数据库进行连接交互，SQL语句当然应该置于此。 模型层中数据访问模块的功能如下：1)实现数据的读取与存储操作。2)实现事务处理。 界面视图层主要是处理">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-01-24T11:20:51.856Z">
@@ -114,7 +146,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Geehon" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Geehon's Blog" type="application/atom+xml">
 
 
 
@@ -129,7 +161,7 @@
   };
 </script>
 
-  <title>关于MVC的一些看法 | Geehon</title>
+  <title>关于MVC的一些看法 | Geehon's Blog</title>
   
 
 
@@ -188,7 +220,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Geehon</span>
+        <span class="site-title">Geehon's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -236,7 +268,7 @@
         
         
           
-          <li class="menu-item menu-item-tags">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -246,7 +278,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         
@@ -270,7 +302,7 @@
         
         
           
-          <li class="menu-item menu-item-archives">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -280,7 +312,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -313,6 +345,9 @@
       
     </ul>
   
+
+  
+    
 
   
 
@@ -356,9 +391,6 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-            
-
-          
           <div id="content" class="content">
             
 
@@ -371,6 +403,8 @@
   
   
 
+  
+    <div class="reading-progress-bar"></div>
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -387,7 +421,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Geehon">
+      <meta itemprop="name" content="Geehon's Blog">
     </span>
 
     
@@ -550,7 +584,7 @@
     <a href="https://geehon.github.io/post/b3189365.html" title="关于MVC的一些看法">https://geehon.github.io/post/b3189365.html</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC</a> 许可协议。转载请注明出处！</li>
 </ul>
 
       </div>
@@ -631,6 +665,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -696,7 +732,7 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  
+                  <a href="/tags/index.html">
                     
                     
                       
@@ -729,7 +765,7 @@
                     
                     <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
-                  
+                  </a>
                 </div>
               
             </nav>
@@ -750,45 +786,37 @@
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="https://github.com/geehon" title="GitHub &rarr; https://github.com/geehon" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/geehon" title="GitHub &rarr; https://github.com/geehon" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="mailto:geehon.liao@gmail.com" title="E-Mail &rarr; mailto:geehon.liao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:geehon.liao@gmail.com" title="E-Mail &rarr; mailto:geehon.liao@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="https://weibo.com/u/3545818897" title="Weibo &rarr; https://weibo.com/u/3545818897" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  <a href="https://weibo.com/u/3545818897" title="Weibo &rarr; https://weibo.com/u/3545818897" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
                 </span>
               
                 <span class="links-of-author-item">
                   
                   
-                    
-                  
                   
                     
                   
-                  <a href="https://www.facebook.com/profile.php?id=100010614164072" title="FB Page &rarr; https://www.facebook.com/profile.php?id=100010614164072" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  <a href="https://www.facebook.com/profile.php?id=100010614164072" title="FB Page &rarr; https://www.facebook.com/profile.php?id=100010614164072" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i></a>
                 </span>
               
             </div>
@@ -801,7 +829,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc.svg" alt="Creative Commons"></a>
              </div>
           
 
@@ -810,20 +838,16 @@
             <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-globe"></i>
-                Links
+                常用链接
               </div>
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://laravel-china.github.io/php-the-right-way/" title="https://laravel-china.github.io/php-the-right-way/" rel="noopener" target="_blank">PHP The Right Way</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://laravel-china.org/" title="https://laravel-china.org/" rel="noopener" target="_blank">Laravel China</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
                     <a href="https://iissnan.com/progit" title="https://iissnan.com/progit" rel="noopener" target="_blank">Pro Git</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://laravel-china.github.io/php-the-right-way/" title="https://laravel-china.github.io/php-the-right-way/" rel="noopener" target="_blank">PHP The Right Way</a>
                   </li>
                 
               </ul>
@@ -858,7 +882,17 @@
       
 
       
-
+         <!-- 插入音乐控件-->
+          <link rel="stylesheet" href="/dist/APlayer.min.css">
+          <div class="weizhi"><div id="aplayer"></div></div>
+          <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+          <script type="text/javascript" src="/dist/music.js"></script>
+          <style>
+          #aplayer {width: 80%; margin: 0 auto;}
+          @media screen and (max-device-width: 400px) {
+          #aplayer {width: 80%;}
+          }
+          </style>
     </div>
   </aside>
 
@@ -980,6 +1014,8 @@
 
 
 
+  
+
 
 
   
@@ -990,6 +1026,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
 
 
   
@@ -1005,9 +1044,7 @@
   
 
 
-  <script src="/js/src/affix.js?v=6.7.0"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
 
 
 
@@ -1418,83 +1455,6 @@
 
 
   
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
-
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
-
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
-
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function(i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap');
-      $(e).after($wrap);
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
-        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
-          return $(e).text();
-        }).toArray().join('\n');
-        var ta = document.createElement('textarea');
-        var range = document.createRange(); //For Chrome
-        var sel = window.getSelection(); //For Chrome
-        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-        ta.style.top = yPosition + 'px'; //Prevent page scroll
-        ta.style.position = 'absolute';
-        ta.style.opacity = '0';
-        ta.value = code;
-        ta.textContent = code; //For FireFox
-        ta.contentEditable = true;
-        ta.readOnly = false;
-        document.body.appendChild(ta);
-        range.selectNode(ta);
-        sel.removeAllRanges();
-        sel.addRange(range);
-        ta.setSelectionRange(0, code.length);
-        var result = document.execCommand('copy');
-        
-          if (result) $(this).text('复制成功');
-          else $(this).text('复制失败');
-        
-        ta.blur(); //For iOS
-        $(this).blur();
-      })).on('mouseleave', function(e) {
-        var $b = $(this).find('.copy-btn');
-        setTimeout(function() {
-          $b.text('复制');
-        }, 300);
-      }).append(e);
-    })
-  </script>
-
 
   
 

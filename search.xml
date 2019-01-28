@@ -8,21 +8,21 @@
         <category>设计</category>
       </categories>
       <tags>
-        <tag>API</tag>
         <tag>接口</tag>
+        <tag>API</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[关于如何判断客户端类型]]></title>
     <url>%2Fpost%2F512841c.html</url>
-    <content type="text"><![CDATA[开发应用有时候会涉及到针对不同的访问类型提供不同的业务处理。以下是分别使用JavaScript和PHP进行判断的简单介绍。使用JavaScript判断首先来了解一下Navigator 对象，Navigator对象包含有关浏览器的信息，通过该对象的属性可以判断访问的客户端类型。Navigator具体有哪些属性可以访问Navigator属性使用方法userAgent属性：使用正则表达式判断navigator.userAgent的信息。123456789101112131415161718&lt;script type="text/javascript"&gt; function browserRedirect() &#123; var sUserAgent = navigator.userAgent.toLowerCase(); var bIsIpad = sUserAgent.match(/ipad/i) == "ipad"; var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os"; var bIsMidp = sUserAgent.match(/midp/i) == "midp"; var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4"; var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb"; var bIsAndroid = sUserAgent.match(/android/i) == "android"; var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce"; var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile"; if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ) &#123; // 跳转到A页面 window.location.href="A页面"; &#125; &#125; browserRedirect(); &lt;/script&gt;使用PHP判断具体原理是利用$_SERVER[ ]这个数组。客户端对应用进行访问的时候$_SERVER[ ]会携带客户端类型的相关信息，具体的在代码注释里有详细说明。12345678910111213141516171819202122232425262728293031323334353637383940&lt;?php/** * 查看是否为手机端的方法 * 判断是手机访问还是是电脑访问 */ function isMobile() &#123; // 如果有HTTP_X_WAP_PROFILE则一定是移动设备 if (isset ($_SERVER['HTTP_X_WAP_PROFILE'])) return true; // 此条摘自TPM智能切换模板引擎，适合TPM开发 if(isset ($_SERVER['HTTP_CLIENT']) &amp;&amp; 'PhoneClient' == $_SERVER['HTTP_CLIENT']) return true; //如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息 if (isset ($_SERVER['HTTP_VIA'])) //找不到为flase,否则为true return stristr($_SERVER['HTTP_VIA'], 'wap') ? true : false; //判断手机发送的客户端标志,兼容性有待提高 if (isset ($_SERVER['HTTP_USER_AGENT'])) &#123; $clientkeywords = array( 'nokia','sony','ericsson','mot','samsung','htc','sgh','lg','sharp', 'sie-','philips','panasonic','alcatel','lenovo','iphone','ipod','blackberry', 'meizu','android','netfront','symbian','ucweb','windowsce','palm','operamini', 'operamobi','openwave','nexusone','cldc','midp','wap','mobile' ); //使用正则从HTTP_USER_AGENT中查找手机浏览器的关键字 if (preg_match("/(" . implode('|', $clientkeywords) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))) &#123; return true; &#125; &#125; //协议法，因为有可能不准确，放到最后判断 if (isset ($_SERVER['HTTP_ACCEPT'])) &#123; // 如果只支持wml并且不支持html那一定是移动设备 // 如果支持wml和html但是wml在html之前则是移动设备 if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== false) &amp;&amp; (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === false || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') &lt; strpos($_SERVER['HTTP_ACCEPT'], 'text/html')))) &#123; return true; &#125; &#125; return false;&#125;使用方法根据isMobile()return的是true还是false执行相关的业务操作。例如：1234567&lt;?php$mobileClinet = isMobile();if (!$mobileClient) &#123; // 执行手机访问的业务&#125; else &#123; // 执行PC访问的业务&#125;]]></content>
+    <content type="text"><![CDATA[开发应用有时候会涉及到针对不同的访问类型提供不同的业务处理。以下是分别使用JavaScript和PHP进行判断的简单介绍。使用JavaScript判断首先来了解一下Navigator 对象，Navigator对象包含有关浏览器的信息，通过该对象的属性可以判断访问的客户端类型。Navigator具体有哪些属性可以访问Navigator属性使用方法userAgent属性：使用正则表达式判断navigator.userAgent的信息。123456789101112131415161718&lt;script type="text/javascript"&gt; function browserRedirect() &#123; var sUserAgent = navigator.userAgent.toLowerCase(); var bIsIpad = sUserAgent.match(/ipad/i) == "ipad"; var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os"; var bIsMidp = sUserAgent.match(/midp/i) == "midp"; var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4"; var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb"; var bIsAndroid = sUserAgent.match(/android/i) == "android"; var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce"; var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile"; if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ) &#123; // 跳转到A页面 window.location.href="A页面"; &#125; &#125; browserRedirect(); &lt;/script&gt;使用PHP判断具体原理是利用$_SERVER[]这个数组。客户端对应用进行访问的时候$_SERVER[]会携带客户端类型的相关信息，具体的在代码注释里有详细说明。12345678910111213141516171819202122232425262728293031323334353637383940&lt;?php/** * 查看是否为手机端的方法 * 判断是手机访问还是是电脑访问 */ function isMobile() &#123; // 如果有HTTP_X_WAP_PROFILE则一定是移动设备 if (isset ($_SERVER['HTTP_X_WAP_PROFILE'])) return true; // 此条摘自TPM智能切换模板引擎，适合TPM开发 if(isset ($_SERVER['HTTP_CLIENT']) &amp;&amp; 'PhoneClient' == $_SERVER['HTTP_CLIENT']) return true; //如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息 if (isset ($_SERVER['HTTP_VIA'])) //找不到为flase,否则为true return stristr($_SERVER['HTTP_VIA'], 'wap') ? true : false; //判断手机发送的客户端标志,兼容性有待提高 if (isset ($_SERVER['HTTP_USER_AGENT'])) &#123; $clientkeywords = array( 'nokia','sony','ericsson','mot','samsung','htc','sgh','lg','sharp', 'sie-','philips','panasonic','alcatel','lenovo','iphone','ipod','blackberry', 'meizu','android','netfront','symbian','ucweb','windowsce','palm','operamini', 'operamobi','openwave','nexusone','cldc','midp','wap','mobile' ); //使用正则从HTTP_USER_AGENT中查找手机浏览器的关键字 if (preg_match("/(" . implode('|', $clientkeywords) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))) &#123; return true; &#125; &#125; //协议法，因为有可能不准确，放到最后判断 if (isset ($_SERVER['HTTP_ACCEPT'])) &#123; // 如果只支持wml并且不支持html那一定是移动设备 // 如果支持wml和html但是wml在html之前则是移动设备 if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== false) &amp;&amp; (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === false || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') &lt; strpos($_SERVER['HTTP_ACCEPT'], 'text/html')))) &#123; return true; &#125; &#125; return false;&#125;使用方法根据isMobile()return的是true还是false执行相关的业务操作。例如：1234567&lt;?php$mobileClinet = isMobile();if (!$mobileClient) &#123; // 执行手机访问的业务&#125; else &#123; // 执行PC访问的业务&#125;]]></content>
       <categories>
         <category>PHP</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>PHP</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -94,9 +94,9 @@
         <category>JavaScript</category>
       </categories>
       <tags>
+        <tag>API</tag>
         <tag>JavaScript</tag>
         <tag>Facebook</tag>
-        <tag>API</tag>
       </tags>
   </entry>
   <entry>

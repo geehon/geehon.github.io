@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="GeeHon">
+  <meta name="keywords" content="">
+  
+  <title>爱奇艺签到小组件分享 - GeeHon 小窝</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"www.geehon.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 50vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>GeeHon</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/books/">
+                <i class="iconfont icon-books"></i>
+                书籍
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://source.unsplash.com/random/1600x900') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="爱奇艺签到小组件分享">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-30 17:22" pubdate>
+        2021年6月30日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      699 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">爱奇艺签到小组件分享</h1>
+            
+            <div class="markdown-body">
+              <p>本着能不动手的都用软件去完成的宗旨，区区签到这种重复无聊的事情当然要写个小脚本让它自己去完成啦！！刚好看到 AppStore 上有个叫 Scriptable 的小组件应用，并且还是支持 JavaScript。那就在 serverless 平台上创建定时自动签到任务。用手机实时监控签到进度。嗯！白嫖的味道~ o(<em>￣▽￣</em>)o 真香！</p>
+<p class="note note-success">
+Tips：按照本文创建小组件的思路可以做服务器监控。实时查阅更新订阅列表等等···
+</p>
+
+<p>实现的效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/iqy_widget.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="cloudflare-平台上创建-Workers-及Cron-触发器："><a href="#cloudflare-平台上创建-Workers-及Cron-触发器：" class="headerlink" title="cloudflare 平台上创建 Workers 及Cron 触发器："></a>cloudflare 平台上创建 Workers 及Cron 触发器：</h2><ol>
+<li>workers 的代码：</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Example someHost is set up to take in a JSON request</span>
+<span class="hljs-comment"> * Replace url with the host you wish to send requests to</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> </span>yourCookieSubString the string called `P00001` Find In Cookie</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> </span>url the URL to send the request to</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">const</span> yourCookieSubString = stringFindInCookie
+<span class="hljs-keyword">const</span> url = <span class="hljs-string">&quot;https://tc.vip.iqiyi.com/taskCenter/task/userSign?P00001=&quot;</span>
+  + yourCookieSubString 
+  + <span class="hljs-string">&quot;&amp;lang=zh_CN&amp;app_lm=cn&amp;deviceID=pcw-pc&amp;version=v2&amp;platform=Q.browser.iPhone&quot;</span>
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * gatherResponse awaits and returns a response body as a string.</span>
+<span class="hljs-comment"> * Use await gatherResponse(..) in an async function to get the response body</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;Response&#125;</span> <span class="hljs-variable">response</span></span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gatherResponse</span>(<span class="hljs-params">response</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; headers &#125; = response
+  <span class="hljs-keyword">const</span> contentType = headers.get(<span class="hljs-string">&quot;content-type&quot;</span>) || <span class="hljs-string">&quot;&quot;</span>
+  <span class="hljs-keyword">if</span> (contentType.includes(<span class="hljs-string">&quot;application/json&quot;</span>)) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">await</span> response.json())
+  &#125;
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (contentType.includes(<span class="hljs-string">&quot;application/text&quot;</span>)) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> response.text()
+  &#125;
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (contentType.includes(<span class="hljs-string">&quot;text/html&quot;</span>)) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> response.text()
+  &#125;
+  <span class="hljs-keyword">else</span> &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> response.text()
+  &#125;
+&#125;
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleRequest</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">const</span> init = &#123;
+    <span class="hljs-attr">headers</span>: &#123;
+      <span class="hljs-string">&quot;content-type&quot;</span>: <span class="hljs-string">&quot;application/json;charset=UTF-8&quot;</span>,
+      <span class="hljs-string">&quot;cookie&quot;</span>:<span class="hljs-string">&#x27;you iqy cookie&#x27;</span>
+    &#125;,
+  &#125;
+  <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> fetch(url, init)
+  <span class="hljs-keyword">const</span> results = <span class="hljs-keyword">await</span> gatherResponse(response)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;success&#x27;</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Response(results, init)
+&#125;
+
+<span class="hljs-comment">// 监听小组件请求</span>
+addEventListener(<span class="hljs-string">&quot;fetch&quot;</span>, <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> &#123;
+  <span class="hljs-keyword">return</span> event.respondWith(handleRequest())
+&#125;)
+
+<span class="hljs-comment">// 监听定时任务</span>
+addEventListener(<span class="hljs-string">&quot;scheduled&quot;</span>, <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(event.scheduledTime)
+  <span class="hljs-keyword">return</span> event.waitUntil(handleRequest())
+&#125;)</code></pre></div>
+
+<ol start="2">
+<li>创建触发器</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/iqyworker.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="手机-Scriptable-上创建小组件脚本"><a href="#手机-Scriptable-上创建小组件脚本" class="headerlink" title="手机 Scriptable 上创建小组件脚本"></a>手机 Scriptable 上创建小组件脚本</h2><div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadItems</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">let</span> url = <span class="hljs-string">&quot;yourWorkersUrl&quot;</span>
+  <span class="hljs-keyword">let</span> req = <span class="hljs-keyword">new</span> Request(url)
+  <span class="hljs-keyword">let</span> json = <span class="hljs-keyword">await</span> req.loadJSON()
+  <span class="hljs-comment">// console.log(json)</span>
+  <span class="hljs-keyword">return</span> json
+&#125;
+
+<span class="hljs-keyword">let</span> getItem = <span class="hljs-keyword">await</span> loadItems()
+
+<span class="hljs-keyword">if</span> (config.runsInWidget) &#123;
+  <span class="hljs-keyword">let</span> widget = <span class="hljs-keyword">await</span> createWidget(getItem)
+  Script.setWidget(widget)
+&#125; 
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createWidget</span>(<span class="hljs-params">items</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> item = items
+  <span class="hljs-keyword">let</span> gradient = <span class="hljs-keyword">new</span> LinearGradient()
+  gradient.locations = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]
+  gradient.colors = [
+    <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&quot;#1c1c1c&quot;</span>), <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&quot;#29323c&quot;</span>)
+  ]
+  <span class="hljs-keyword">let</span> widget = <span class="hljs-keyword">new</span> ListWidget()
+  
+  widget.backgroundColor = Color.dynamic(<span class="hljs-keyword">new</span> Color(<span class="hljs-string">&quot;b00202&quot;</span>), <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&quot;5a180f&quot;</span>))
+  <span class="hljs-comment">//widget.backgroundGradient = gradient</span>
+ 
+ 
+  <span class="hljs-keyword">let</span> titleStack = widget.addStack()
+  <span class="hljs-keyword">let</span> authorsElement = titleStack.addText(<span class="hljs-string">&quot;爱奇艺会员&quot;</span>)
+  authorsElement.font = Font.mediumSystemFont(<span class="hljs-number">21</span>)
+  authorsElement.textColor = Color.white()
+  authorsElement.textOpacity = <span class="hljs-number">0.9</span>
+  titleStack.addSpacer()
+  
+  <span class="hljs-keyword">let</span> bodyStack = widget.addStack()
+  <span class="hljs-keyword">let</span> titleElement=bodyStack.addText(<span class="hljs-string">&quot;\n🏅🏅\n已签到&quot;</span> )
+  titleElement.font=Font.mediumSystemFont(<span class="hljs-number">12</span>)
+  titleElement.textColor=Color.white()
+  titleElement.textOpacity=<span class="hljs-number">1</span>
+  
+  <span class="hljs-keyword">let</span> datesElement = bodyStack.addText(<span class="hljs-string">&quot;&quot;</span> + item.data.continueSignDaysSum)
+  datesElement.font = <span class="hljs-keyword">new</span> Font(<span class="hljs-string">&#x27;AvenirNext-Bold&#x27;</span>, <span class="hljs-number">40</span>)
+  datesElement.textColor = Color.cyan()
+  datesElement.textOpacity = <span class="hljs-number">0.9</span>
+  
+  <span class="hljs-keyword">let</span> titleEl=bodyStack.addText(<span class="hljs-string">&quot;\n🏃\n 天&quot;</span> )
+  titleEl.font = Font.mediumSystemFont(<span class="hljs-number">12</span>)
+  titleEl.textColor=Color.white()
+  titleEl.textOpacity=<span class="hljs-number">1</span>
+  
+  bodyStack.addSpacer()
+  
+  <span class="hljs-keyword">let</span> footerStack = widget.addStack()
+  <span class="hljs-keyword">let</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.now())
+  <span class="hljs-keyword">let</span> dateFormatter = <span class="hljs-keyword">new</span> DateFormatter()
+  dateFormatter.useMediumDateStyle()
+  dateFormatter.useShortTimeStyle()
+  <span class="hljs-keyword">let</span> strDate = dateFormatter.string(date)
+  
+  dateEle=footerStack.addText(<span class="hljs-string">&quot;&quot;</span>+strDate)
+  dateEle.font=  <span class="hljs-keyword">new</span> Font(<span class="hljs-string">&#x27;SF Mono&#x27;</span>, <span class="hljs-number">11</span>)
+  dateEle.textColor=Color.white()
+  dateEle.textOpacity=<span class="hljs-number">0.9</span>
+  footerStack.addSpacer()
+  
+  <span class="hljs-keyword">return</span> widget
+&#125;</code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Share/">Share</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/serverless/">serverless</a>
+                    
+                      <a class="hover-with-bg" href="/tags/workers/">workers</a>
+                    
+                      <a class="hover-with-bg" href="/tags/cloudflare/">cloudflare</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/75195c32.html">
+                        <span class="hidden-mobile">Cloudflare Workers 初体验</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'geehon/geehon.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div class="footer-hitokoto"> <a id="hitokotoa" href="https://hitokoto.cn/" target="_blank" rel="nofollow noopener noreferrer"> <span id="hitokoto">:D 获取中...</span> </a> </div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

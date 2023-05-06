@@ -1,0 +1,29 @@
+footer .footer-content a {
+    display: none;
+}
+
+footer .footer-content:before {
+    content: '©2021 GeeHon';
+    color: #5F6871;
+    font-weight: 500;
+}
+
+footer .footer-content:after {
+    content: 'Hexo Fluid';
+    color: #5F6871;
+    font-weight: 500;
+}
+
+.footer-hitokoto{
+    text-align: center;
+    margin-bottom: -2rem;
+    padding-top: 0.5rem;
+}
+
+canvas {
+    width: 100%;
+    height: 100px;
+    background: #FFFFFF;
+    bottom: 0;
+    margin-top: 0.5rem;
+}

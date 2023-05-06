@@ -1,0 +1,917 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="GeeHon">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="GeeHon 小窝">
+<meta property="og:url" content="https://geehon.github.io/index.html">
+<meta property="og:site_name" content="GeeHon 小窝">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="GeeHon">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>GeeHon 小窝</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"geehon.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GeeHon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/books/">
+                <i class="iconfont icon-books"></i>
+                书籍
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://gcore.jsdelivr.net/gh/geehon/blogImgBed@master/img/Home-banner.webp') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Stay Hungry Stay Foolish">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/e8fb0216.html" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/wls2.png" srcset="/img/loading.gif" lazyload alt="wls2 设置代理">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/e8fb0216.html" target="_self">
+          wls2 设置代理
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/e8fb0216.html" target="_self">
+          
+          获取 wls2 网关 cat &#x2F;etc&#x2F;resolv.conf  输出 # This file was automatically generated by WSL. To stop automatic generation of this file, add the following entry to &#x2F;etc&#x2F;wsl.conf: # [network]
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-12 19:40" pubdate>
+              2022-04-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Share/">Share</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+              <a href="/tags/wls2/">wls2</a>
+            
+              <a href="/tags/windows/">windows</a>
+            
+              <a href="/tags/proxy/">proxy</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/548ed134.html" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/20220207190927.png" srcset="/img/loading.gif" lazyload alt="Vue3成为新的默认版本">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/548ed134.html" target="_self">
+          Vue3成为新的默认版本
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/548ed134.html" target="_self">
+          
+          Vue 3 将在今天（2022 年 2 月 7 日）成为新的默认版本 Link
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-07 19:01" pubdate>
+              2022-02-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vue/">vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/e77ae499.html" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/Go_index.png" srcset="/img/loading.gif" lazyload alt="Go 项目中引用 GitHub 私有仓库">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/e77ae499.html" target="_self">
+          Go 项目中引用 GitHub 私有仓库
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/e77ae499.html" target="_self">
+          
+          1. 先在私有仓库发布版本 2. 设置 GOPRIVATEGo Module 的代理站点默认的 repo 是 https:&#x2F;&#x2F;proxy.golang.org&#x2F;,direct ，由于我们的模块发布在 github 上，所以我们需要提供一种机制来绕过代理站点的私有仓库，这里可以使用 GOPRIVATE 来实现，GOPRIVATE 环境变量用来表示不对外公开的模块路径。 在开发环境中我们可以按照如下命
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-05 23:48" pubdate>
+              2022-02-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Go/">Go</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/bfca83d6.html" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/xdebug-featured.png" srcset="/img/loading.gif" lazyload alt="vscode 配置 Xdebug 调试">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/bfca83d6.html" target="_self">
+          vscode 配置 Xdebug 调试
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/bfca83d6.html" target="_self">
+          
+          安装 Xdebug 扩展首先到 Xdebug 的官网下载页面 https:&#x2F;&#x2F;xdebug.org&#x2F;download 下载对应 php 版本的 Xdebug 扩展。将其放入 php 目录下的 ext 文件夹中。例如：原本的 php 是放在 D:\php\php74 中, Xdebug 扩展文件就放在 D:\php\php74\ext 目录下。 然后在配置文件 php.ini 末尾添加如下几项配置：
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-02 17:50" pubdate>
+              2021-12-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vscode/">vscode</a>
+            
+              <a href="/tags/Xdebug/">Xdebug</a>
+            
+              <a href="/tags/php/">php</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/396b749b.html" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/Ubuntu_cover.png" srcset="/img/loading.gif" lazyload alt="Swap分区设置">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/396b749b.html" target="_self">
+          Swap分区设置
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/396b749b.html" target="_self">
+          
+          一、Swap 分区介绍Swap 分区是什么？Linux 中 Swap，类似于 Windows 的虚拟内存，就是当内存不足的时候，把一部分硬盘空间虚拟成内存使用，从而解决内存容量不足的情况。 Swap 分区的作用是什么？它的功能就是在内存不够的情况下，操作系统先把内存中暂时不用的数据，存到硬盘的交换空间，腾出内存来让别的程序运行 二、创建 Swap 分区步骤我们可以用以下命令查看 free -m
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-19 10:46" pubdate>
+              2021-11-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux/">linux</a>
+            
+              <a href="/tags/system/">system</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/22a8a2ac.html" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed@master/img/phpstorm.png" srcset="/img/loading.gif" lazyload alt="一款 phpstorm markdown 主题">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/22a8a2ac.html" target="_self">
+          一款 phpstorm markdown 主题
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/22a8a2ac.html" target="_self">
+          
+          phpstorm 的 markdown 插件渲染的效果不符合我的需求故做了一下修改。使用方式是直接修改插件的默认样式。打开 Languages &amp; Frameworks -&gt; Markdown 找到Add CSS rules 填入下面的 CSS 样式。 部分样式预览  style 标签仅仅为了代码高亮  &lt;style&gt; &#x2F;* 从下面这行开始复制 *&#x2F; body &amp;#123;
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-08 20:37" pubdate>
+              2021-09-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Share/">Share</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PhPStorm/">PhPStorm</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/abe97b01.html" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/Scriptable.png" srcset="/img/loading.gif" lazyload alt="爱奇艺签到小组件分享">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/abe97b01.html" target="_self">
+          爱奇艺签到小组件分享
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/abe97b01.html" target="_self">
+          
+          本着能不动手的都用软件去完成的宗旨，区区签到这种重复无聊的事情当然要写个小脚本让它自己去完成啦！！刚好看到 AppStore 上有个叫 Scriptable 的小组件应用，并且还是支持 JavaScript。那就在 serverless 平台上创建定时自动签到任务。用手机实时监控签到进度。嗯！白嫖的味道~ o(￣▽￣)o 真香！  Tips：按照本文创建小组件的思路可以做服务器监控。实时查阅更新订
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-30 17:22" pubdate>
+              2021-06-30
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Share/">Share</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/serverless/">serverless</a>
+            
+              <a href="/tags/workers/">workers</a>
+            
+              <a href="/tags/cloudflare/">cloudflare</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/75195c32.html" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/cloudflare_cover.png" srcset="/img/loading.gif" lazyload alt="Cloudflare Workers 初体验">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/75195c32.html" target="_self">
+          Cloudflare Workers 初体验
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/75195c32.html" target="_self">
+          
+          之前一直都关注 Cloudflare Workers 推出的 serverless 服务。但是一直没有动手去尝试一下。今天访问 Github 一直无法连上。突然想到了 Cloudflare 的 这个服务，看能不能解决当前的痛点。果然需求是学习的最大动力。 首先登录到 Cloudflare 的 dashboard https:&#x2F;&#x2F;dash.cloudflare.com&#x2F;找到右侧的 Workers 服
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-13 17:22" pubdate>
+              2021-06-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Share/">Share</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/serverless/">serverless</a>
+            
+              <a href="/tags/workers/">workers</a>
+            
+              <a href="/tags/cloudflare/">cloudflare</a>
+            
+              <a href="/tags/%E9%95%9C%E5%83%8F/">镜像</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/1f022d57.html" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/nodejs_cover.png" srcset="/img/loading.gif" lazyload alt="Node 环境变量设置">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/1f022d57.html" target="_self">
+          Node 环境变量设置
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/1f022d57.html" target="_self">
+          
+          通常情况下，我们需要针对不同环境（开发环境、集成环境、生产环境等），进行相应策略的打包（比如是否替换接口地址，代码是否压缩等）。 拿 Nodejs 打包工具来说，由于 Nodejs 打包工具运行在 Nodejs 环境中，要识别不同环境，就得配置 Nodejs 环境变量，并且把它当成判断不同环境的依据。 Nodejs 提供了 process.env API，它返回一个包含用户环境信息的对象。当我们给
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-11 09:24" pubdate>
+              2021-06-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/nodejs/">nodejs</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/655c8dfc.html" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/Ubuntu_cover.png" srcset="/img/loading.gif" lazyload alt="解决 Ubuntu 无线频繁断网">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/655c8dfc.html" target="_self">
+          解决 Ubuntu 无线频繁断网
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/655c8dfc.html" target="_self">
+          
+          最近把手上的一台就笔电重装了代号为 Focal Fossa 的 Ubuntu 。但是无线网络总是频繁断网。经过一番排查，最终找到了故障原因，这边做下总结。 故障原因WiFi 的 power management 处于打开状态 使用 iwconfig 查看iwconfig   如图所示若看到：  Power Management:on  将此关闭： sudo iwconfig  wlp3s0 pow
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-09 10:07" pubdate>
+              2021-06-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Share/">Share</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+              <a href="/tags/Ubuntu/">Ubuntu</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div class="footer-hitokoto"> <a id="hitokotoa" href="https://hitokoto.cn/" target="_blank" rel="nofollow noopener noreferrer"> <span id="hitokoto">:D 获取中...</span> </a> </div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <script src="https://gcore.jsdelivr.net/gh/PipecraftNet/jsdelivr-auto-fallback@main/index.min.js"></script> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

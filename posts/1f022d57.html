@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="GeeHon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="通常情况下，我们需要针对不同环境（开发环境、集成环境、生产环境等），进行相应策略的打包（比如是否替换接口地址，代码是否压缩等）。 拿 Nodejs 打包工具来说，由于 Nodejs 打包工具运行在 Nodejs 环境中，要识别不同环境，就得配置 Nodejs 环境变量，并且把它当成判断不同环境的依据。 Nodejs 提供了 process.env API，它返回一个包含用户环境信息的对象。当我们给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node 环境变量设置">
+<meta property="og:url" content="https://geehon.github.io/posts/1f022d57.html">
+<meta property="og:site_name" content="GeeHon 小窝">
+<meta property="og:description" content="通常情况下，我们需要针对不同环境（开发环境、集成环境、生产环境等），进行相应策略的打包（比如是否替换接口地址，代码是否压缩等）。 拿 Nodejs 打包工具来说，由于 Nodejs 打包工具运行在 Nodejs 环境中，要识别不同环境，就得配置 Nodejs 环境变量，并且把它当成判断不同环境的依据。 Nodejs 提供了 process.env API，它返回一个包含用户环境信息的对象。当我们给">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/nodejs_cover.png">
+<meta property="article:published_time" content="2021-06-11T09:24:25.000Z">
+<meta property="article:author" content="GeeHon">
+<meta property="article:tag" content="nodejs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/nodejs_cover.png">
+  
+  
+  <title>Node 环境变量设置 - GeeHon 小窝</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-okaidia.min.css" />
+      
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"geehon.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  <header style="height: 50vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GeeHon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/books/">
+                <i class="iconfont icon-books"></i>
+                书籍
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://source.unsplash.com/1600x900/?nature,cartoon') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Node 环境变量设置">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-11 09:24" pubdate>
+        2021年6月11日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Node 环境变量设置</h1>
+            
+            <div class="markdown-body">
+              <p>通常情况下，我们需要针对不同环境（开发环境、集成环境、生产环境等），进行相应策略的打包（比如是否替换接口地址，代码是否压缩等）。</p>
+<p>拿 Nodejs 打包工具来说，由于 Nodejs 打包工具运行在 Nodejs 环境中，要识别不同环境，就得配置 Nodejs 环境变量，并且把它当成判断不同环境的依据。</p>
+<p>Nodejs 提供了 process.env API，它返回一个包含用户环境信息的对象。当我们给 Nodejs 设置一个环境变量，并且把它挂载在 process.env 返回的对象上，便可以在代码中进行相应的环境判断。</p>
+<p>于是，在 Webpack 配置文件中，经常会看到类似的代码：</p>
+<div class="code-wrapper"><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// webpack.config.js</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">mode</span><span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'production'</span> <span class="token operator">?</span> <span class="token string">'production'</span> <span class="token operator">:</span> <span class="token string">'development'</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">&#125;</span></code></pre></div>
+
+<p>要说明的是，NODE_ENV 这个名称只是开发社区的一种共识，名称内容是可以修改的。如果需要，你也可以把它定义为 NODE_XXX。</p>
+<p>那么问题来了，如何设置 Nodejs 这个环境变量呢？总结下来，可通过以下几种方式。</p>
+<h2 id="在-Webpack-配置文件直接赋值"><a href="#在-Webpack-配置文件直接赋值" class="headerlink" title="在 Webpack 配置文件直接赋值"></a>在 Webpack 配置文件直接赋值</h2><p>你只需要在 Webpack 打包配置文件中，直接给 process.env.NODE_ENV 赋值即可。不过，每次在不同环境下打包时，都要手动反复修改它的值。</p>
+<div class="code-wrapper"><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// webpack.config.js</span>
+
+process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">=</span> <span class="token string">'production'</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">mode</span><span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'production'</span> <span class="token operator">?</span> <span class="token string">'production'</span> <span class="token operator">:</span> <span class="token string">'development'</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">&#125;</span></code></pre></div>
+
+<h2 id="命令行（CLI）设置"><a href="#命令行（CLI）设置" class="headerlink" title="命令行（CLI）设置"></a>命令行（CLI）设置</h2><h3 id="Windows-系统"><a href="#Windows-系统" class="headerlink" title="Windows 系统"></a>Windows 系统</h3><p>Windows 系统下，最常用的命令行面板就是 CMD（Command的简写） 和 Powershell。它们的操作分别如下：</p>
+<p>CMD (Command 或 命令提示符)</p>
+<div class="code-wrapper"><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看所有环境变量</span>
+<span class="token builtin class-name">set</span>
+
+<span class="token comment"># 查看单个环境变量（以 NODE_ENV 为例）</span>
+<span class="token builtin class-name">set</span> NODE_ENV
+
+<span class="token comment"># 设置单个环境变量（以 NODE_ENV 为例）</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">NODE_ENV</span><span class="token operator">=</span>production
+
+<span class="token comment"># 删除单个环境变量（以 NODE_ENV 为例）</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">NODE_ENV</span><span class="token operator">=</span></code></pre></div>
+
+<p>上面的命令行以 NODE_ENV 变量为例，在 CMD 命令面板的操作中，如果 NODE_ENV 没有设置，则通过 <code>set NODE_ENV</code> 命令查看时，会提示 环境变量 NODE_ENV 没有定义。</p>
+<p>当设置完 NODE_ENV（假设设置值为 production），再通过 <code>set NODE_ENV</code> 命令查看时，会返回 NODE_ENV&#x3D;production。</p>
+<p>Powershell</p>
+<div class="code-wrapper"><pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 查看所有环境变量</span>
+<span class="token function">ls</span> env:
+
+<span class="token comment"># 查看单个环境变量（以 NODE_ENV 为例）</span>
+<span class="token variable">$env</span>:NODE_ENV
+
+<span class="token comment"># 设置单个环境变量（以 NODE_ENV 为例）</span>
+<span class="token variable">$env</span>:NODE_ENV=<span class="token string">"production"</span>
+
+<span class="token comment"># 删除单个环境变量（以 NODE_ENV 为例）</span>
+<span class="token function">del</span> env:NODE_ENV</code></pre></div>
+
+<p>上面的命令行以 NODE_ENV 变量为例，在 Powershell 命令面板的操作中，若 NODE_ENV 没有设置，则通过 <code>set NODE_ENV</code> 命令查看它时，没有任何提示。</p>
+<p>当设置完 NODE_ENV（假设设置值为 production），再通过 <code>set NODE_ENV</code> 命令查看它时，会返回 production。</p>
+<p class="note note-warning">
+    注意点: 上面的环境设置只是临时的，即只针对当前运行窗口的环境有效。当CLI运行窗口关闭以后，相关设置都会丢失。
+</p>
+
+<p>另外，虽然通过 CMD 和 Powershell 都能修改环境变量，但它们之间设置的环境变量并不会相互影响，即你在 CMD 可以设置 NODE_ENV 为 production，同时也可以在 Powershell 中设置 NODE_ENV 为 development，这也印证了上面的描述，设置只针对当前运行窗口有效 。</p>
+<p>如果你希望设置一直生效（即 本地设置），可通过 控制面板 -&gt; 系统和安全 -&gt; 系统 -&gt; 高级系统设置 -&gt; 高级 -&gt; 环境变量 这样进行设置（Windows10、可能需要重启）。</p>
+<h3 id="Mac-系统"><a href="#Mac-系统" class="headerlink" title="Mac 系统"></a>Mac 系统</h3><p>相当于 Windows 系统，Mac 系统上的操作就轻松了不少。因为它只集成一种命令行终端，它设置 Nodejs 环境变量的语法如下：</p>
+<div class="code-wrapper"><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看所有环境变量</span>
+<span class="token function">env</span>
+
+<span class="token comment"># 查看单个环境变量（以 NODE_ENV 为例）</span>
+<span class="token builtin class-name">echo</span> <span class="token variable">$NODE_ENV</span>
+
+<span class="token comment"># 设置单个环境变量（以 NODE_ENV 为例）</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">NODE_ENV</span><span class="token operator">=</span>production
+
+<span class="token comment"># 删除单个环境变量（以 NODE_ENV 为例）</span>
+<span class="token builtin class-name">unset</span> NODE_ENV</code></pre></div>
+
+<p>在配置完 Nodejs 环境变量后，你就可以继续运行项目中的打包命令了。</p>
+<h2 id="配置-package-json"><a href="#配置-package-json" class="headerlink" title="配置 package.json"></a>配置 package.json</h2><p>在项目配置文件 package.json 中，根据不同的打包命令去设置相应的 Nodejs 环境变量，是一种非常主流的做法。其实本质上来说，只是将在命令行面板设置环境变量的命令语句放到了 package.json 文件中，把 设置环境变量 和 打包 两个命令合并运行而已。这种方式，就是将 NODE_ENV 注入到 process.env 对象。不同环境下，设置如下：</p>
+<h3 id="Windows-系统-1"><a href="#Windows-系统-1" class="headerlink" title="Windows 系统"></a>Windows 系统</h3><p>在这种方式下，无论你是使用 CMD (命令提示符) 还是 Powershell 命令行工具，你都可以在 package.json 这样配置：</p>
+<div class="code-wrapper"><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  ...
+  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"set NODE_ENV=production&amp;&amp; npm run clean &amp;&amp; webpack"</span><span class="token punctuation">,</span>
+    <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf ./build &amp;&amp; mkdirp build"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre></div>
+
+<p>配置完后（mkdirp 是一个生成文件夹的第三方包），你只需要在命令行面板运行 npm run build 即可完成打包。</p>
+<p class="note note-warning">
+    注意点: 在 Windows 系统中，你必须移除环境变量命令与 && 符号之间的空白。否者，配置的命令不能生效！
+</p>
+
+<h3 id="Mac-系统-1"><a href="#Mac-系统-1" class="headerlink" title="Mac 系统"></a>Mac 系统</h3><div class="code-wrapper"><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  ...
+  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"export NODE_ENV=production &amp;&amp; npm run clean &amp;&amp; webpack"</span><span class="token punctuation">,</span>
+    <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf ./build &amp;&amp; mkdirp build"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre></div>
+
+<p>从上面描述可以看到，不论是不同的操作系统，还是不同的命令行终端，虽然目的都是设置 Nodejs 环境变量，但它们的语法都不尽相同。这就带来两个问题：</p>
+<ul>
+<li>在 Windows 开发部署的项目，可能在 Mac 系统无法正常打包</li>
+<li>在跨平台开发的项目上，你还得记住每个命令行终端所使用的语法，也麻烦</li>
+</ul>
+<p>为了解决这一问题，有人开发了 cross-env。</p>
+<h3 id="跨平台-cross-env"><a href="#跨平台-cross-env" class="headerlink" title="跨平台 - cross-env"></a>跨平台 - cross-env</h3><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/cross-env">cross-env</a> 是一个跨平台设置环境变量的第三方包，它可以让你只配置一行命令，就能轻松地在多个平台设置环境变量。</p>
+<p>首先，你只需要安装它（由于多个项目在用，所以就全局安装了）：</p>
+<div class="code-wrapper"><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g cross-env</code></pre></div>
+
+<p>然后，在 package.json 文件中进行设置：</p>
+<div class="code-wrapper"><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  ...
+  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"npm run clean &amp;&amp; cross-env NODE_ENV=production webpack"</span><span class="token punctuation">,</span>
+    <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf ./build &amp;&amp; mkdirp build"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre></div>
+
+<p>这样，不管你的电脑是 Windows 系统还是 Mac 系统 ，不管你用的 Powershell 还是 Git，你都可以正常设置 Nodejs 环境变量了。</p>
+<p class="note note-warning">
+    注意点: cross-env NODE_ENV=production && npm run clean && webpack 此类的设置不能使环境变量生效。原因是 && 符号把命令语句分离成了多个，每一个命令执行的环境都是隔离的，而 cross-env 无法作用于其他环境的命令。
+</p>
+
+<p>转载自 <a target="_blank" rel="noopener" href="https://yi-jy.com/2018/08/08/node-env/">https://yi-jy.com/2018/08/08/node-env/</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/nodejs/">nodejs</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/75195c32.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Cloudflare Workers 初体验</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/655c8dfc.html">
+                        <span class="hidden-mobile">解决 Ubuntu 无线频繁断网</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'geehon/geehon.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div class="footer-hitokoto"> <a id="hitokotoa" href="https://hitokoto.cn/" target="_blank" rel="nofollow noopener noreferrer"> <span id="hitokoto">:D 获取中...</span> </a> </div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <script src="https://gcore.jsdelivr.net/gh/PipecraftNet/jsdelivr-auto-fallback@main/index.min.js"></script> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

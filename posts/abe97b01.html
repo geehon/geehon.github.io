@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="GeeHon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本着能不动手的都用软件去完成的宗旨，区区签到这种重复无聊的事情当然要写个小脚本让它自己去完成啦！！刚好看到 AppStore 上有个叫 Scriptable 的小组件应用，并且还是支持 JavaScript。那就在 serverless 平台上创建定时自动签到任务。用手机实时监控签到进度。嗯！白嫖的味道~ o(￣▽￣)o 真香！  Tips：按照本文创建小组件的思路可以做服务器监控。实时查阅更新订">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爱奇艺签到小组件分享">
+<meta property="og:url" content="https://geehon.github.io/posts/abe97b01.html">
+<meta property="og:site_name" content="GeeHon 小窝">
+<meta property="og:description" content="本着能不动手的都用软件去完成的宗旨，区区签到这种重复无聊的事情当然要写个小脚本让它自己去完成啦！！刚好看到 AppStore 上有个叫 Scriptable 的小组件应用，并且还是支持 JavaScript。那就在 serverless 平台上创建定时自动签到任务。用手机实时监控签到进度。嗯！白嫖的味道~ o(￣▽￣)o 真香！  Tips：按照本文创建小组件的思路可以做服务器监控。实时查阅更新订">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/Scriptable.png">
+<meta property="article:published_time" content="2021-06-30T17:22:59.000Z">
+<meta property="article:author" content="GeeHon">
+<meta property="article:tag" content="serverless">
+<meta property="article:tag" content="workers">
+<meta property="article:tag" content="cloudflare">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/Scriptable.png">
+  
+  
+  <title>爱奇艺签到小组件分享 - GeeHon 小窝</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-okaidia.min.css" />
+      
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"geehon.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  <header style="height: 50vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GeeHon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/books/">
+                <i class="iconfont icon-books"></i>
+                书籍
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://source.unsplash.com/1600x900/?nature,cartoon') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="爱奇艺签到小组件分享">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-30 17:22" pubdate>
+        2021年6月30日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">爱奇艺签到小组件分享</h1>
+            
+            <div class="markdown-body">
+              <p>本着能不动手的都用软件去完成的宗旨，区区签到这种重复无聊的事情当然要写个小脚本让它自己去完成啦！！刚好看到 AppStore 上有个叫 Scriptable 的小组件应用，并且还是支持 JavaScript。那就在 serverless 平台上创建定时自动签到任务。用手机实时监控签到进度。嗯！白嫖的味道~ o(<em>￣▽￣</em>)o 真香！</p>
+<p class="note note-success">
+Tips：按照本文创建小组件的思路可以做服务器监控。实时查阅更新订阅列表等等···
+</p>
+
+<p>实现的效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/iqy_widget.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="cloudflare-平台上创建-Workers-及Cron-触发器："><a href="#cloudflare-平台上创建-Workers-及Cron-触发器：" class="headerlink" title="cloudflare 平台上创建 Workers 及Cron 触发器："></a>cloudflare 平台上创建 Workers 及Cron 触发器：</h2><ol>
+<li>workers 的代码：</li>
+</ol>
+<div class="code-wrapper"><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/**
+ * Example someHost is set up to take in a JSON request
+ * Replace url with the host you wish to send requests to
+ * @param &#123;string&#125; yourCookieSubString the string called `P00001` Find In Cookie
+ * @param &#123;string&#125; url the URL to send the request to
+ */</span>
+<span class="token keyword">const</span> yourCookieSubString <span class="token operator">=</span> stringFindInCookie
+<span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token string">"https://tc.vip.iqiyi.com/taskCenter/task/userSign?P00001="</span>
+  <span class="token operator">+</span> yourCookieSubString 
+  <span class="token operator">+</span> <span class="token string">"&amp;lang=zh_CN&amp;app_lm=cn&amp;deviceID=pcw-pc&amp;version=v2&amp;platform=Q.browser.iPhone"</span>
+
+<span class="token comment">/**
+ * gatherResponse awaits and returns a response body as a string.
+ * Use await gatherResponse(..) in an async function to get the response body
+ * @param &#123;Response&#125; response
+ */</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">gatherResponse</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> headers <span class="token punctuation">&#125;</span> <span class="token operator">=</span> response
+  <span class="token keyword">const</span> contentType <span class="token operator">=</span> headers<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"content-type"</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">""</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>contentType<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"application/json"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>contentType<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"application/text"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>contentType<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"text/html"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> init <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">headers</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token string-property property">"content-type"</span><span class="token operator">:</span> <span class="token string">"application/json;charset=UTF-8"</span><span class="token punctuation">,</span>
+      <span class="token string-property property">"cookie"</span><span class="token operator">:</span><span class="token string">'you iqy cookie'</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> init<span class="token punctuation">)</span>
+  <span class="token keyword">const</span> results <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">gatherResponse</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'success'</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Response</span><span class="token punctuation">(</span>results<span class="token punctuation">,</span> init<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 监听小组件请求</span>
+<span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"fetch"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> event<span class="token punctuation">.</span><span class="token function">respondWith</span><span class="token punctuation">(</span><span class="token function">handleRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 监听定时任务</span>
+<span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"scheduled"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>scheduledTime<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span><span class="token function">handleRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></code></pre></div>
+
+<ol start="2">
+<li>创建触发器</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/geehon/blogImgBed/img/iqyworker.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="手机-Scriptable-上创建小组件脚本"><a href="#手机-Scriptable-上创建小组件脚本" class="headerlink" title="手机 Scriptable 上创建小组件脚本"></a>手机 Scriptable 上创建小组件脚本</h2><div class="code-wrapper"><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">loadItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">let</span> url <span class="token operator">=</span> <span class="token string">"yourWorkersUrl"</span>
+  <span class="token keyword">let</span> req <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+  <span class="token keyword">let</span> json <span class="token operator">=</span> <span class="token keyword">await</span> req<span class="token punctuation">.</span><span class="token function">loadJSON</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// console.log(json)</span>
+  <span class="token keyword">return</span> json
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> getItem <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">loadItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>runsInWidget<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">let</span> widget <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">createWidget</span><span class="token punctuation">(</span>getItem<span class="token punctuation">)</span>
+  Script<span class="token punctuation">.</span><span class="token function">setWidget</span><span class="token punctuation">(</span>widget<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span> 
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">createWidget</span><span class="token punctuation">(</span><span class="token parameter">items</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">let</span> item <span class="token operator">=</span> items
+  <span class="token keyword">let</span> gradient <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinearGradient</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  gradient<span class="token punctuation">.</span>locations <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>
+  gradient<span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token keyword">new</span> <span class="token class-name">Color</span><span class="token punctuation">(</span><span class="token string">"#1c1c1c"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Color</span><span class="token punctuation">(</span><span class="token string">"#29323c"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">]</span>
+  <span class="token keyword">let</span> widget <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListWidget</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  
+  widget<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> Color<span class="token punctuation">.</span><span class="token function">dynamic</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Color</span><span class="token punctuation">(</span><span class="token string">"b00202"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Color</span><span class="token punctuation">(</span><span class="token string">"5a180f"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token comment">//widget.backgroundGradient = gradient</span>
+ 
+ 
+  <span class="token keyword">let</span> titleStack <span class="token operator">=</span> widget<span class="token punctuation">.</span><span class="token function">addStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> authorsElement <span class="token operator">=</span> titleStack<span class="token punctuation">.</span><span class="token function">addText</span><span class="token punctuation">(</span><span class="token string">"爱奇艺会员"</span><span class="token punctuation">)</span>
+  authorsElement<span class="token punctuation">.</span>font <span class="token operator">=</span> Font<span class="token punctuation">.</span><span class="token function">mediumSystemFont</span><span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">)</span>
+  authorsElement<span class="token punctuation">.</span>textColor <span class="token operator">=</span> Color<span class="token punctuation">.</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  authorsElement<span class="token punctuation">.</span>textOpacity <span class="token operator">=</span> <span class="token number">0.9</span>
+  titleStack<span class="token punctuation">.</span><span class="token function">addSpacer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  
+  <span class="token keyword">let</span> bodyStack <span class="token operator">=</span> widget<span class="token punctuation">.</span><span class="token function">addStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> titleElement<span class="token operator">=</span>bodyStack<span class="token punctuation">.</span><span class="token function">addText</span><span class="token punctuation">(</span><span class="token string">"\n🏅🏅\n已签到"</span> <span class="token punctuation">)</span>
+  titleElement<span class="token punctuation">.</span>font<span class="token operator">=</span>Font<span class="token punctuation">.</span><span class="token function">mediumSystemFont</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span>
+  titleElement<span class="token punctuation">.</span>textColor<span class="token operator">=</span>Color<span class="token punctuation">.</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  titleElement<span class="token punctuation">.</span>textOpacity<span class="token operator">=</span><span class="token number">1</span>
+  
+  <span class="token keyword">let</span> datesElement <span class="token operator">=</span> bodyStack<span class="token punctuation">.</span><span class="token function">addText</span><span class="token punctuation">(</span><span class="token string">""</span> <span class="token operator">+</span> item<span class="token punctuation">.</span>data<span class="token punctuation">.</span>continueSignDaysSum<span class="token punctuation">)</span>
+  datesElement<span class="token punctuation">.</span>font <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Font</span><span class="token punctuation">(</span><span class="token string">'AvenirNext-Bold'</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">)</span>
+  datesElement<span class="token punctuation">.</span>textColor <span class="token operator">=</span> Color<span class="token punctuation">.</span><span class="token function">cyan</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  datesElement<span class="token punctuation">.</span>textOpacity <span class="token operator">=</span> <span class="token number">0.9</span>
+  
+  <span class="token keyword">let</span> titleEl<span class="token operator">=</span>bodyStack<span class="token punctuation">.</span><span class="token function">addText</span><span class="token punctuation">(</span><span class="token string">"\n🏃\n 天"</span> <span class="token punctuation">)</span>
+  titleEl<span class="token punctuation">.</span>font <span class="token operator">=</span> Font<span class="token punctuation">.</span><span class="token function">mediumSystemFont</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span>
+  titleEl<span class="token punctuation">.</span>textColor<span class="token operator">=</span>Color<span class="token punctuation">.</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  titleEl<span class="token punctuation">.</span>textOpacity<span class="token operator">=</span><span class="token number">1</span>
+  
+  bodyStack<span class="token punctuation">.</span><span class="token function">addSpacer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  
+  <span class="token keyword">let</span> footerStack <span class="token operator">=</span> widget<span class="token punctuation">.</span><span class="token function">addStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> dateFormatter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DateFormatter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  dateFormatter<span class="token punctuation">.</span><span class="token function">useMediumDateStyle</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  dateFormatter<span class="token punctuation">.</span><span class="token function">useShortTimeStyle</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> strDate <span class="token operator">=</span> dateFormatter<span class="token punctuation">.</span><span class="token function">string</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span>
+  
+  dateEle<span class="token operator">=</span>footerStack<span class="token punctuation">.</span><span class="token function">addText</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token operator">+</span>strDate<span class="token punctuation">)</span>
+  dateEle<span class="token punctuation">.</span>font<span class="token operator">=</span>  <span class="token keyword">new</span> <span class="token class-name">Font</span><span class="token punctuation">(</span><span class="token string">'SF Mono'</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">)</span>
+  dateEle<span class="token punctuation">.</span>textColor<span class="token operator">=</span>Color<span class="token punctuation">.</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  dateEle<span class="token punctuation">.</span>textOpacity<span class="token operator">=</span><span class="token number">0.9</span>
+  footerStack<span class="token punctuation">.</span><span class="token function">addSpacer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  
+  <span class="token keyword">return</span> widget
+<span class="token punctuation">&#125;</span></code></pre></div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Share/">Share</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/serverless/">serverless</a>
+                    
+                      <a class="hover-with-bg" href="/tags/workers/">workers</a>
+                    
+                      <a class="hover-with-bg" href="/tags/cloudflare/">cloudflare</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/22a8a2ac.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一款 phpstorm markdown 主题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/75195c32.html">
+                        <span class="hidden-mobile">Cloudflare Workers 初体验</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'geehon/geehon.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <div class="footer-hitokoto"> <a id="hitokotoa" href="https://hitokoto.cn/" target="_blank" rel="nofollow noopener noreferrer"> <span id="hitokoto">:D 获取中...</span> </a> </div>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <script src="https://gcore.jsdelivr.net/gh/PipecraftNet/jsdelivr-auto-fallback@main/index.min.js"></script> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
